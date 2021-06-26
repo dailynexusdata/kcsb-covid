@@ -1,0 +1,45 @@
+```{r}
+library(tidyverse)
+```
+
+```{r}
+vaccines <- read.csv(
+    "https://data.chhs.ca.gov/dataset/e283ee5a-cf18-4f20-a92c-ee94a2866ccd/resource/130d7ba2-b6eb-438d-a412-741bde207e1c/download/covid19vaccinesbycounty.csv"
+) %>%
+    filter(county == "Santa Barbara") %>%
+    mutate(date = as.Date(administered_date, "%Y-%m-%d")) %>%
+    filter(date < as.Date("2021-6-1")) %>%
+    select(
+        date,
+        full=cumulative_fully_vaccinated,
+        single=cumulative_at_least_one_dose,
+        partial=total_partially_vaccinated # its just full - single
+    ) %>% 
+    gather("type", "n", -date)
+
+ggplot(vaccines, aes(x=date, y=n, group=type)) +
+    geom_line(aes(color=type))
+```
+
+```{r}
+pop <- read.csv("https://data.chhs.ca.gov/dataset/f333528b-4d38-4814-bebb-12db1f10f535/resource/046cdd2b-31e5-4d34-9ed3-b48cdbc4be7a/download/covid19cases_test.csv") %>%
+    filter(area == "Santa Barbara") %>%
+    select(date, population) %>%
+    mutate(date = as.Date(date, "%Y-%m-%d"))
+
+# same throughout
+unique(pop$population)
+
+vaccines %>%
+    group_by(type) %>%
+    summarise(pct = last(n) / last(pop$population)) 
+```
+
+```{r}
+left_join(vaccines, pop, by="date") %>%
+    filter(type != "partial") %>%
+    mutate(pct = n / population) %>%
+    select(date, type, pct) %>%
+    write.csv("county_vaccines.csv")
+```
+
