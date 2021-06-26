@@ -126,7 +126,12 @@
 
   // singleArea is just a function, and we have to use d3 to make the actual visual
   // we attach our data with datum() and then make the path and call our Area function
-  svg.append("g").datum(data).append("path").attr("d", singleArea);
+  svg
+    .append("g")
+    .datum(data)
+    .append("path")
+    .attr("d", singleArea)
+    .attr("fill", "red");
 
   // TODO:
   // make the full Area starting at 0 (.y0(0)) and the height as .fullPct using our y scale
