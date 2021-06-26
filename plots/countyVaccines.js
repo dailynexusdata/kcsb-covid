@@ -9,15 +9,17 @@
   // 1. the original csv file
   // 2. log just the (await d3.csv(...)) part to see how that function works
   // 3. make sure you're familiar with map (and the other functional js functions)
-  const data = (await d3.csv("../data/county_vaccines.csv")).map(
-    ({ date, fullPct, singlePct }) => {
-      return {
-        date: parseTime(date),
-        fullPct: Number(fullPct),
-        singlePct: Number(singlePct),
-      };
-    }
-  );
+  const data = (
+    await d3.csv(
+      "https://raw.githubusercontent.com/dailynexusdata/kcsb-covid/main/data/county_vaccines.csv"
+    )
+  ).map(({ date, fullPct, singlePct }) => {
+    return {
+      date: parseTime(date),
+      fullPct: Number(fullPct),
+      singlePct: Number(singlePct),
+    };
+  });
 
   // Size is the total size of the plot, axis etc
   // I like to set it up in a single object, other people just leave individual
