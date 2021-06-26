@@ -65,11 +65,11 @@
   // this isn't important to memorize, just copy over from previous projects,
   // the important thing is that we use axisBottom and pass in our scale (x)
   // Since we call "append", you should now see a <g> tag inside of our svg
-  svg
+  /*svg
     .append("g")
     .style("font-size", "12pt")
     .attr("transform", `translate(0, ${size.height - margin.bottom})`)
-    .call(d3.axisBottom().scale(x).ticks(5).tickFormat(d3.timeFormat("%B")));
+    .call(d3.axisBottom().scale(x).ticks(5).tickFormat(d3.timeFormat("%B")));*/
 
   // we need to setup our y scale aswell. since we want values increasing from
   // bottom to top, the range may look reversed from what you might expect
@@ -86,7 +86,7 @@
   // TODO: log y.ticks(5) to see what it returns,
   // I don't want a label for 0, so I use slice to remove that
   // forEach is the same as map except it doesn't return a value - part of functional js
-  y.ticks(5)
+  /*y.ticks(5)
     .slice(1)
     .forEach((yVal) => {
       // TODO: log yVal to see what is being passed in each iteration
@@ -112,26 +112,26 @@
         .attr("y2", y(yVal))
         .attr("stroke", "gray")
         .attr("stroke-width", "0.5px");
-    });
+    });*/
 
   // we can use d3.area() to make a nice area plot
   // this setup takes an x value and then the lower ylimit (y0) and upper limit (y1)
   // these take in either values or functions, I pass in functions to call the axis we setup above
   // and use the correct data value
-  const singleArea = d3
+  /*const singleArea = d3
     .area()
     .x((d) => x(d.date))
     .y0((d) => y(d.fullPct))
-    .y1((d) => y(d.singlePct));
+    .y1((d) => y(d.singlePct));*/
 
   // singleArea is just a function, and we have to use d3 to make the actual visual
   // we attach our data with datum() and then make the path and call our Area function
-  svg
+  /*svg
     .append("g")
     .datum(data)
     .append("path")
     .attr("d", singleArea)
-    .attr("fill", "red");
+    .attr("fill", "red");*/
 
   // TODO:
   // make the full Area starting at 0 (.y0(0)) and the height as .fullPct using our y scale
