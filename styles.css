@@ -1,0 +1,29 @@
+html {
+  font-family: Baskerville, Baskerville Old Face, Hoefler Text, Garamond,
+    Times New Roman, serif;
+}
+
+.container {
+  width: 600px;
+  padding: 10px;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+}
+
+h1,
+p {
+  margin: 0;
+}
+
+hr {
+  border-bottom: none;
+  border-width: 2px;
+}
+
+svg {
+  height: 400px;
+  width: 600px;
+}
