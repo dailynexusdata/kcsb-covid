@@ -30,7 +30,7 @@
   ]; //shuffleArray(Object.keys(data[0]).slice(1));
   console.log(variants);
   const size = {
-    width: 600,
+    width: Math.min(600, window.innerWidth * 0.95),
     height: 400,
   };
 
@@ -53,14 +53,14 @@
     .append("g")
     .style("font-size", "12pt")
     .attr("transform", `translate(0, ${size.height - margin.bottom})`)
-    .call(d3.axisBottom().scale(x));
+    .call(d3.axisBottom().scale(x).ticks(6));
 
   const y = d3
     .scaleLinear()
     .domain([-40, 40])
     .range([size.height - margin.bottom, margin.top]);
 
-  const color = d3.scaleOrdinal().domain(variants).range(d3.schemeDark2);
+  const color = d3.scaleOrdinal().domain(variants).range(d3.schemeTableau10);
 
   const stackedData = d3
     .stack()
@@ -79,17 +79,44 @@
     .enter()
     .append("path")
     .attr("class", "variants")
+    .attr("id", (d) => `variant-${d.key}`)
     .attr("fill-opacity", 1)
     .attr("fill", function (d) {
       return color(d.key);
     })
-    .attr("d", area)
+    .attr("d", area);
+
+  const legend = d3
+    .select("#variantLegend")
+    .style("width", size.width)
+    .style("display", "flex")
+    .style("flex-wrap", "wrap");
+
+  legend
+    .selectAll("leg")
+    .data(variants.sort())
+    .enter()
+    .append("div")
+    .attr("class", "variantLegends")
+    .html(
+      (d) =>
+        `<div style="display: flex; text-transform: capitalize">
+          <div style="width: 20px; height: 20px; margin-right: 3px;background-color: ${color(
+            d
+          )}"></div>
+          ${d.replace("_", " ")}
+        </div>`
+    )
+    .style("padding", "5px")
+    .style("user-select", "none")
     .on("mouseover", function (event, d) {
-      console.log(d.key);
-      d3.selectAll(".variants").attr("fill-opacity", 0.3);
-      d3.select(this).attr("fill-opacity", 1);
+      d3.selectAll(".variantLegends").style("opacity", 0.2);
+      d3.selectAll(".variants").style("fill-opacity", 0.2);
+      d3.select(this).style("opacity", 1);
+      d3.select(`#variant-${d}`).style("fill-opacity", 1);
     })
-    .on("mouseleave", function (event, d) {
-      d3.selectAll(".variants").attr("fill-opacity", 1);
+    .on("mouseleave", () => {
+      d3.selectAll(".variantLegends").style("opacity", 1);
+      d3.selectAll(".variants").style("fill-opacity", 1);
     });
 })();

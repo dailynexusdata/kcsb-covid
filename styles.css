@@ -4,12 +4,15 @@ html {
 }
 
 .container {
-  width: 600px;
-  padding: 10px;
+  max-width: 600px;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
 }
 
 .footer {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
 }
 
@@ -21,9 +24,11 @@ p {
 hr {
   border-bottom: none;
   border-width: 2px;
+  width: 100%;
 }
 
 svg {
   height: 400px;
-  width: 600px;
+  max-width: 600px;
+  align-self: center;
 }

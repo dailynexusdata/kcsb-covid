@@ -14,9 +14,8 @@
       singlePct: Number(singlePct),
     };
   });
-
   const size = {
-    width: 600,
+    width: Math.min(600, window.innerWidth * 0.95),
     height: 400,
   };
 
@@ -79,7 +78,7 @@
     .datum(data)
     .append("path")
     .attr("d", singleArea)
-    .attr("fill", "red");
+    .attr("fill", "#FF0000cc");
 
   const fullArea = d3
     .area()
@@ -92,5 +91,5 @@
     .datum(data)
     .append("path")
     .attr("d", fullArea)
-    .attr("fill", "blue");
+    .attr("fill", "#0000FFcc");
 })();
