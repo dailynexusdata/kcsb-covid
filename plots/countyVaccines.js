@@ -78,7 +78,9 @@
     .datum(data)
     .append("path")
     .attr("d", singleArea)
-    .attr("fill", "#FF0000cc");
+    .attr("class", "vaccineArea")
+    .attr("id", "vaccine-partial")
+    .attr("fill", "#E15759");
 
   const fullArea = d3
     .area()
@@ -91,5 +93,44 @@
     .datum(data)
     .append("path")
     .attr("d", fullArea)
-    .attr("fill", "#0000FFcc");
+    .attr("class", "vaccineArea")
+    .attr("id", "vaccine-full")
+    .attr("fill", "#4E79A7");
+
+  const color = {
+    Partial: "#E15759",
+    Full: "#4E79A7",
+  };
+
+  const legend = d3
+    .select("#vaccineLegend")
+    .style("width", size.width)
+    .style("display", "flex")
+    .style("flex-wrap", "wrap");
+
+  legend
+    .selectAll("squares")
+    .data(["Partial", "Full"])
+    .enter()
+    .append("div")
+    .attr("class", "vaccineLegends")
+    .html(
+      (d) =>
+        `<div style="display: flex; text-transform: capitalize">
+          <div style="width: 20px; height: 20px; margin-right: 3px;background-color: ${color[d]}"></div>
+          ${d}
+        </div>`
+    )
+    .style("padding", "5px")
+    .style("user-select", "none")
+    .on("mouseover", function (event, d) {
+      d3.selectAll(".vaccineLegends").style("opacity", 0.2);
+      d3.selectAll(".vaccineArea").style("fill-opacity", 0.2);
+      d3.select(this).style("opacity", 1);
+      d3.select(`#vaccine-${d.toLowerCase()}`).style("fill-opacity", 1);
+    })
+    .on("mouseleave", () => {
+      d3.selectAll(".vaccineLegends").style("opacity", 1);
+      d3.selectAll(".vaccineArea").style("fill-opacity", 1);
+    });
 })();
