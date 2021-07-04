@@ -122,6 +122,7 @@
         </div>`
     )
     .style("padding", "5px")
+    .style("-webkit-user-select", "none")
     .style("user-select", "none")
     .on("mouseover", function (event, d) {
       d3.selectAll(".vaccineLegends").style("opacity", 0.2);

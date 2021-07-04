@@ -109,6 +109,7 @@
     )
     .style("padding", "5px")
     .style("user-select", "none")
+    .style("-webkit-user-select", "none")
     .on("mouseover", function (event, d) {
       d3.selectAll(".variantLegends").style("opacity", 0.2);
       d3.selectAll(".variants").style("fill-opacity", 0.2);
