@@ -8,16 +8,16 @@ vaccines <- read.csv(
 ) %>%
     filter(county == "Santa Barbara") %>%
     mutate(date = as.Date(administered_date, "%Y-%m-%d")) %>%
-    filter(date < as.Date("2021-6-1")) %>%
+    filter(date < as.Date("2021-7-1")) %>%
     select(
         date,
         full=cumulative_fully_vaccinated,
         single=cumulative_at_least_one_dose,
         partial=total_partially_vaccinated # its just full - single
-    ) %>% 
-    gather("type", "n", -date)
-
-ggplot(vaccines, aes(x=date, y=n, group=type)) +
+    ) 
+vaccines %>% 
+    gather("type", "n", -date) %>%
+ggplot(aes(x=date, y=n, group=type)) +
     geom_line(aes(color=type))
 ```
 
@@ -37,9 +37,19 @@ vaccines %>%
 
 ```{r}
 left_join(vaccines, pop, by="date") %>%
-    filter(type != "partial") %>%
-    mutate(pct = n / population) %>%
-    select(date, type, pct) %>%
-    write.csv("county_vaccines.csv")
+    mutate(
+        singlePct = single / population,
+        fullPct = full / population
+    ) %>%
+    select(date, fullPct, singlePct) %>%
+    write.csv("county_vaccines.csv", row.names=FALSE)
+```
+
+```{r}
+variants <- read.csv("variant.csv")
+
+head(variants)
+
+install.packages('streamgraph')
 ```
 
