@@ -1,5 +1,5 @@
 (async () => {
-  const parseTime = d3.timeParse("%m/%d/%Y");
+  const parseTime = d3.timeParse("%Y-%m-%d");
   function shuffleArray(arr) {
     const array = [...arr];
     for (let i = array.length - 1; i > 0; i--) {
@@ -20,7 +20,14 @@
     return { date: parseTime(date), ...variants };
   });
   console.log(data);
-  const variants = shuffleArray(Object.keys(data[0]).slice(1));
+  const variants = [
+    "epsilon",
+    "iota",
+    "no_interest",
+    "gamma",
+    "delta",
+    "alpha",
+  ]; //shuffleArray(Object.keys(data[0]).slice(1));
   console.log(variants);
   const size = {
     width: 600,
@@ -60,29 +67,29 @@
     .offset(d3.stackOffsetSilhouette)
     .keys(variants)(data);
 
-  console.log(stackedData);
-
   const area = d3
     .area()
     .x((d) => x(d.data.date))
     .y0((d) => y(d[0]))
     .y1((d) => y(d[1]));
-  console.log(stackedData.slice(0, 1));
   svg
     .append("g")
     .selectAll("mylayers")
-    .data(stackedData.slice(0, 1))
+    .data(stackedData)
     .enter()
     .append("path")
-    .attr("fill", "none")
-    .attr("stroke", function (d) {
+    .attr("class", "variants")
+    .attr("fill-opacity", 1)
+    .attr("fill", function (d) {
       return color(d.key);
     })
-    .attr(
-      "d",
-      d3
-        .line()
-        .x((d) => x(d.data.date))
-        .y((d) => y(d[1]))
-    );
+    .attr("d", area)
+    .on("mouseover", function (event, d) {
+      console.log(d.key);
+      d3.selectAll(".variants").attr("fill-opacity", 0.3);
+      d3.select(this).attr("fill-opacity", 1);
+    })
+    .on("mouseleave", function (event, d) {
+      d3.selectAll(".variants").attr("fill-opacity", 1);
+    });
 })();
