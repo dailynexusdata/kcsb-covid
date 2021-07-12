@@ -46,10 +46,19 @@ left_join(vaccines, pop, by="date") %>%
 ```
 
 ```{r}
-variants <- read.csv("variant.csv")
+variants <- read.csv("variant_googlesheets.csv")
 
-head(variants)
+library(lubridate)
+library(tidyverse)
 
-install.packages('streamgraph')
+
+var <- variants %>%
+    filter(variant != "no_interest") %>%
+    spread(variant, count) %>%
+    mutate(date = as.Date(date, "%m/%d/%Y"))
+
+var <- var[order(as.Date(var$date, "%m/%d/%Y")),]
+
+write.csv(var, "variants.csv", na="0", row.names=F)
 ```
 

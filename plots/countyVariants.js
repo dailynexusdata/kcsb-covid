@@ -10,25 +10,18 @@
   }
   const data = (
     await d3.csv(
-      "https://raw.githubusercontent.com/dailynexusdata/kcsb-covid/main/data/variants.csv"
+      "data/variants.csv"
+      // "https://raw.githubusercontent.com/dailynexusdata/kcsb-covid/main/data/variants.csv"
     )
   ).map(({ date, ...variants }) => {
-    delete variants[""];
     Object.entries(variants).forEach(([vr, val]) => {
       variants[vr] = Number(val);
     });
     return { date: parseTime(date), ...variants };
   });
-  console.log(data);
-  const variants = [
-    "epsilon",
-    "iota",
-    "no_interest",
-    "gamma",
-    "delta",
-    "alpha",
-  ]; //shuffleArray(Object.keys(data[0]).slice(1));
-  console.log(variants);
+  const variants = ["epsilon", "iota", "gamma", "delta", "alpha"];
+  // const variants = shuffleArray(Object.keys(data[0]).slice(1));
+
   const size = {
     width: Math.min(600, window.innerWidth * 0.95),
     height: 400,
@@ -37,8 +30,8 @@
   const margin = {
     top: 30,
     bottom: 40,
-    left: 10,
-    right: 10,
+    left: 20,
+    right: 20,
   };
   const svg = d3.select("#variantPlot");
 
@@ -52,26 +45,49 @@
   svg
     .append("g")
     .style("font-size", "12pt")
-    .attr("transform", `translate(0, ${size.height - margin.bottom})`)
-    .call(d3.axisBottom().scale(x).ticks(6));
+    .attr("transform", `translate(0, ${size.height - margin.bottom + 5})`)
+    .call(d3.axisBottom().scale(x).ticks(6).tickFormat(d3.timeFormat("%b")));
 
   const y = d3
     .scaleLinear()
-    .domain([-40, 40])
+    .domain([0, 250])
     .range([size.height - margin.bottom, margin.top]);
+
+  const horizLines = svg.append("g");
+
+  y.ticks(5)
+    .slice(1)
+    .forEach((yVal, i) => {
+      horizLines
+        .append("text")
+        .text(yVal + (yVal === 250 ? " Cases" : ""))
+        .attr("fill", "#adadad")
+        .attr("x", margin.left)
+        .attr("y", y(yVal) - 5);
+
+      horizLines
+        .append("line")
+        .attr("x1", margin.left)
+        .attr("x2", size.width - margin.right)
+        .attr("y1", y(yVal))
+        .attr("y2", y(yVal))
+        .attr("stroke", "#d3d3d3")
+        .attr("stroke-width", "0.5px");
+    });
 
   const color = d3.scaleOrdinal().domain(variants).range(d3.schemeTableau10);
 
-  const stackedData = d3
-    .stack()
-    .offset(d3.stackOffsetSilhouette)
-    .keys(variants)(data);
+  const stackedData = d3.stack().offset(d3.stackOffsetNone).keys(variants)(
+    data
+  );
 
   const area = d3
     .area()
     .x((d) => x(d.data.date))
     .y0((d) => y(d[0]))
-    .y1((d) => y(d[1]));
+    .y1((d) => y(d[1]))
+    .curve(d3.curveMonotoneX);
+
   svg
     .append("g")
     .selectAll("mylayers")
@@ -100,11 +116,11 @@
     .attr("class", "variantLegends")
     .html(
       (d) =>
-        `<div style="display: flex; text-transform: capitalize">
+        `<div style="display: flex; text-transform: capitalize;">
           <div style="width: 20px; height: 20px; margin-right: 3px;background-color: ${color(
             d
           )}"></div>
-          ${d.replace("_", " ")}
+          ${d}
         </div>`
     )
     .style("padding", "5px")

@@ -1,6 +1,5 @@
 html {
-  font-family: Baskerville, Baskerville Old Face, Hoefler Text, Garamond,
-    Times New Roman, serif;
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
 }
 
 .container {
@@ -31,4 +30,10 @@ svg {
   height: 400px;
   max-width: 600px;
   align-self: center;
+}
+
+a,
+a:visited {
+  text-decoration: none;
+  color: black;
 }
