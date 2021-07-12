@@ -28,7 +28,7 @@
   };
 
   const margin = {
-    top: 30,
+    top: 40,
     bottom: 40,
     left: 20,
     right: 20,
@@ -131,9 +131,35 @@
       d3.selectAll(".variants").style("fill-opacity", 0.2);
       d3.select(this).style("opacity", 1);
       d3.select(`#variant-${d}`).style("fill-opacity", 1);
+
+      const varData = stackedData
+        .find((v) => v.key === d)
+        .filter(([a, b]) => a !== b);
+
+      svg
+        .selectAll(".points")
+        .data(varData)
+        .enter()
+        .append("circle")
+        .attr("class", "points")
+        .attr("cx", (d) => x(d.data.date))
+        .attr("cy", (v) => y(v[1]))
+        .attr("r", 4);
+      svg
+        .selectAll(".pointLabels")
+        .data(varData)
+        .enter()
+        .append("text")
+        .attr("class", "pointLabels")
+        .attr("x", (d) => x(d.data.date))
+        .attr("y", (v) => y(v[1]) - 8)
+        .text((v) => v[1] - v[0])
+        .attr("text-anchor", "middle");
     })
     .on("mouseleave", () => {
       d3.selectAll(".variantLegends").style("opacity", 1);
       d3.selectAll(".variants").style("fill-opacity", 1);
+      d3.selectAll(".points").remove();
+      d3.selectAll(".pointLabels").remove();
     });
 })();

@@ -191,7 +191,7 @@
     .style("text-transform", "capitalize")
     .style("text-decoration", "underline")
     .style("text-decoration-color", (d) => color[d])
-    .style("text-decoration-thickness", "0.3em")
+    .style("text-decoration-thickness", "0.4em")
     .attr("class", "vaccineLegends")
     .text((d) => `${d}${d === "Full" ? "" : "l"}y Vaccinated`)
     .style("padding", "5px")
