@@ -49,25 +49,29 @@
       .domain([data[0].date, data[data.length - 1].date])
       .range([margin.left, size.width - margin.right]);
 
-    svg
+    const yAxisLine = svg
       .append("g")
       .style("font-family", "Helvetica Neue,Helvetica,Arial,sans-serif")
       .style("font-size", "12pt")
-      .attr("transform", `translate(0, ${size.height - margin.bottom + 5})`)
-      .call(
-        d3
-          .axisBottom()
-          .scale(x)
-          .tickValues([
-            ...(size.width < 600 ? [x.domain()[1]] : x.domain()),
-            ...x.ticks(),
-          ])
-          .tickFormat((d) => {
-            const t = d3.timeFormat("%b")(d);
+      .attr("transform", `translate(0, ${size.height - margin.bottom})`);
+    yAxisLine.call(
+      d3
+        .axisBottom()
+        .scale(x)
+        // .tickValues([
+        //   ...(size.width < 600
+        //     ? [x.domain()[1]]
+        //     : [x.domain()[0]]),
+        //   ...x.ticks(),
+        // ])
+        .tickFormat((d) => {
+          const t = d3.timeFormat("%b")(d);
 
-            return t === "Jan" ? t + "'21" : t;
-          })
-      );
+          return t === "Jan" ? t + "'21" : t;
+        })
+    );
+
+    yAxisLine.select(".domain").attr("stroke-width", 0);
 
     const y = d3
       .scaleLinear()

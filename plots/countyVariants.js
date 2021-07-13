@@ -32,19 +32,29 @@
 
   const makePlot = () => {
     const size = {
-      width: Math.min(600, window.innerWidth * 0.95),
+      width: Math.min(600, window.innerWidth * 0.9),
       height: 400,
     };
 
     const margin = {
-      top: 40,
+      top: 30,
       bottom: 40,
       left: window.innerWidth > 500 ? 60 : 35,
       right: window.innerWidth > 500 ? 60 : 35,
     };
-    const svg = d3.select("#variantPlot");
+    const container = d3
+      .select("#variantPlot")
+      .style("position", "relative")
+      .style("width", "100%")
+      .style("height", size.height + "px")
+      .style("display", "flex")
+      .style("justify-content", "center");
 
-    svg.selectAll("*").remove();
+    container.selectAll("*").remove();
+    const svg = container
+      .append("div")
+      .style("position", "absolute")
+      .append("svg");
 
     svg.attr("width", size.width).attr("height", size.height);
 
@@ -53,28 +63,29 @@
       .domain(d3.extent(data, (d) => d.date))
       .range([margin.left, size.width - margin.right]);
 
-    svg
+    const yAxisLine = svg
       .append("g")
       .style("font-size", "12pt")
-      .attr("transform", `translate(0, ${size.height - margin.bottom + 5})`)
-      .call(
-        d3
-          .axisBottom()
-          .scale(x)
-          // .ticks(window.innerWidth > 400 ? 6 : 4)
-          .tickValues(
-            data
-              .map(({ date }, i) =>
-                window.innerWidth > 400 ? date : i % 2 == 1 ? null : date
-              )
-              .filter((d) => d !== null)
-          )
-          .tickFormat((d) => {
-            const t = d3.timeFormat("%b")(d);
+      .attr("transform", `translate(0, ${size.height - margin.bottom})`);
+    yAxisLine.call(
+      d3
+        .axisBottom()
+        .scale(x)
+        // .ticks(window.innerWidth > 400 ? 6 : 4)
+        .tickValues(
+          data
+            .map(({ date }, i) =>
+              window.innerWidth > 400 ? date : i % 2 == 1 ? null : date
+            )
+            .filter((d) => d !== null)
+        )
+        .tickFormat((d) => {
+          const t = d3.timeFormat("%b")(d);
 
-            return t === "Jan" ? t + "'21" : t;
-          })
-      );
+          return t === "Jan" ? t + "'21" : t;
+        })
+    );
+    yAxisLine.select(".domain").attr("stroke-width", 0);
 
     const y = d3
       .scaleLinear()
@@ -90,13 +101,13 @@
           .append("text")
           .text(yVal * 100 + (yVal === 1 ? "%" : ""))
           .attr("fill", "#adadad")
-          .attr("x", 0)
+          .attr("x", window.innerWidth > 500 ? 10 : 0)
           .attr("y", y(yVal) - 5);
 
         horizLines
           .append("line")
-          .attr("x1", 0)
-          .attr("x2", size.width)
+          .attr("x1", window.innerWidth > 500 ? 10 : 0)
+          .attr("x2", size.width - (window.innerWidth > 500 ? 10 : 0))
           .attr("y1", y(yVal))
           .attr("y2", y(yVal))
           .attr("stroke", "#d3d3d3")
@@ -144,6 +155,9 @@
 
     console.log(dataNormalized);
 
+    const overlayRectWidth =
+      (size.width - margin.left - margin.right + rectWidth) / 8;
+
     svg
       .append("g")
       .selectAll("mylayers")
@@ -167,24 +181,81 @@
       .data((d) => d)
       .enter()
       .append("rect")
+      .attr("class", (d, i) => `var-date-${i}`)
       .attr("y", (d) => y(d[1]))
       .attr("x", (d) => x(d.data.date) - rectWidth / 2)
       .attr("width", rectWidth)
       .attr("height", (d) => y(d[0]) - y(d[1]));
 
+    const createTextTip = (count, d) => {
+      container.selectAll(".tooltip").remove();
+
+      const div = container
+        .append("div")
+        .attr("class", "tooltip")
+        .style("position", "absolute")
+        .style("z-index", 10)
+        .style(
+          "left",
+          x(d.date) +
+            (x(d.date) > size.width / 2
+              ? window.innerWidth > 400
+                ? -420
+                : -rectWidth * 13.75
+              : window.innerWidth > 400
+              ? rectWidth * 1.15
+              : rectWidth * 2.5) /
+              2 +
+            "px"
+        )
+        .style("top", size.height / 4 + "px");
+
+      div
+        .append("div")
+        .style("border", "1px solid black")
+        .style("background-color", "white")
+        .style("padding", "5px")
+        .style("width", window.innerWidth > 370 ? "175px" : "140px")
+        .style("border-radius", "10px").html(`
+          ${d3.timeFormat("%B 20%y")(d.date)}<hr>${Object.entries(d)
+        .splice(1)
+        .sort((a, b) => (a[0] < b[0] ? -1 : 1))
+        .map(
+          ([v, c]) =>
+            "<div style='display: flex; justify-content: space-between;'><span><span style='color: " +
+            color(v) +
+            ";'>" +
+            v[0].toUpperCase() +
+            v.slice(1) +
+            "</span>: " +
+            Math.round(c * 100) +
+            "%</span> <span>(" +
+            count[v] +
+            ")</span></div>"
+        )
+        .join("")}
+      <br># in the parenthesis is count from sample.`);
+    };
+
     svg
       .append("g")
       .selectAll(".variantOverlay")
-      .data(data.map(({ date }) => date))
+      .data(data)
       .enter()
       .append("rect")
       .attr("y", y(1))
-      .attr("x", (d) => x(d) - rectWidth / 2)
-      .attr("width", rectWidth)
+      .attr("x", (d) => x(d.date) - overlayRectWidth / 2)
+      .attr("width", overlayRectWidth)
       .attr("height", y(0) - y(1))
       .attr("fill-opacity", 0)
-      .on("mouseover", (_, d) => {
-        console.log(data.find(({ date }) => date === d));
+      .on("mouseover touchstart", (_, d) => {
+        createTextTip(
+          d,
+          dataNormalized.find(({ date }) => d.date === date)
+        );
+      })
+      .on("mouseleave touchend", () => {
+        container.selectAll(".tooltip").remove();
       });
     // const variantLine = d3
     //   .line()
