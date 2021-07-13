@@ -15,7 +15,9 @@ vaccines <- read.csv(
         single=cumulative_at_least_one_dose,
         partial=total_partially_vaccinated # its just full - single
     ) 
-vaccines %>% 
+
+vaccines %>%
+    mutate(full = full + partial) %>%
     gather("type", "n", -date) %>%
 ggplot(aes(x=date, y=n, group=type)) +
     geom_line(aes(color=type))
@@ -33,15 +35,18 @@ unique(pop$population)
 vaccines %>%
     group_by(type) %>%
     summarise(pct = last(n) / last(pop$population)) 
+
+vaccines
 ```
 
 ```{r}
 left_join(vaccines, pop, by="date") %>%
     mutate(
         singlePct = single / population,
-        fullPct = full / population
+        fullPct = full / population,
+        partialPct = partial / population
     ) %>%
-    select(date, fullPct, singlePct) %>%
+    select(date, fullPct, singlePct, partialPct) %>%
     write.csv("county_vaccines.csv", row.names=FALSE)
 ```
 
@@ -50,6 +55,9 @@ variants <- read.csv("variant_googlesheets.csv")
 
 library(lubridate)
 library(tidyverse)
+
+
+variants %>% summarise(count = sum(count))
 
 
 var <- variants %>%
@@ -61,4 +69,5 @@ var <- var[order(as.Date(var$date, "%m/%d/%Y")),]
 
 write.csv(var, "variants.csv", na="0", row.names=F)
 ```
+
 
