@@ -4,7 +4,7 @@ html {
 
 .container {
   max-width: 600px;
-  padding: 5px;
+  padding: 10px;
   display: flex;
   flex-direction: column;
 }
