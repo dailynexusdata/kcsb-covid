@@ -4,9 +4,14 @@ html {
 
 .container {
   max-width: 600px;
-  padding: 10px;
   display: flex;
   flex-direction: column;
+}
+
+.container p,
+.container h1,
+.container #variantLegend {
+  margin: 0 10px;
 }
 
 .footer {

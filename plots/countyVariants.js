@@ -39,8 +39,8 @@
     const margin = {
       top: 40,
       bottom: 40,
-      left: window.innerWidth > 500 ? 60 : 40,
-      right: window.innerWidth > 500 ? 60 : 40,
+      left: window.innerWidth > 500 ? 60 : 35,
+      right: window.innerWidth > 500 ? 60 : 35,
     };
     const svg = d3.select("#variantPlot");
 
