@@ -17,20 +17,23 @@ document.getElementById(
 ).innerText = `<iframe src="https://dailynexusdata.github.io/kcsb-covid/#ucsbTesting" height="558px" width="100%" style="border: none; overflow: hidden;" scrolling="no" frameborder="0"></iframe>`;
 
 const closeStuff = function (event) {
-  const vacDiv = document.getElementById("vaccines");
+  const vacDiv = document.getElementById("vaccinePlot");
   if (!vacDiv.contains(event.target)) {
     closeVaccines();
   }
-  const varDiv = document.getElementById("variants");
+  const varDiv = document.getElementById("variantPlot");
   if (!varDiv.contains(event.target)) {
     closeVariants();
   }
-  const ucsbDiv = document.getElementById("ucsbTesting");
+  const ucsbDiv = document.getElementById("ucsbPlot");
   if (!ucsbDiv.contains(event.target)) {
     closeUCSB();
   }
 };
 
-window.addEventListener("click", closeStuff);
-window.addEventListener("touchstart", closeStuff);
-window.addEventListener("touchmove", closeStuff);
+document.addEventListener("click", closeStuff);
+document.addEventListener("touchstart", closeStuff);
+document.addEventListener("touchend", closeStuff);
+document.addEventListener("touchcancel", closeStuff);
+document.addEventListener("touchmove", closeStuff);
+document.addEventListener("focusout", closeStuff);
