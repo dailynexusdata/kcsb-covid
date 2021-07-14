@@ -16,7 +16,7 @@ document.getElementById(
   "ucsbEmbed"
 ).innerText = `<iframe src="https://dailynexusdata.github.io/kcsb-covid/#ucsbTesting" height="558px" width="100%" style="border: none; overflow: hidden;" scrolling="no" frameborder="0"></iframe>`;
 
-window.addEventListener("click", function (event) {
+window.addEventListener("click touchstart", function (event) {
   const vacDiv = document.getElementById("vaccines");
   if (!vacDiv.contains(event.target)) {
     closeVaccines();
