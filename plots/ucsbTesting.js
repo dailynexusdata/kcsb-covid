@@ -177,7 +177,7 @@ const closeUCSB = () => {
     });
 
     svg.on("mouseleave touchend touchcancel", () => {
-      closeUCSB();
+      // closeUCSB();
     });
   };
 
