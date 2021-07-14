@@ -42,6 +42,7 @@
       left: window.innerWidth > 500 ? 60 : 35,
       right: window.innerWidth > 500 ? 60 : 35,
     };
+
     const container = d3
       .select("#variantPlot")
       .style("position", "relative")
@@ -153,8 +154,6 @@
       (size.width - margin.left - margin.right) /
       (window.innerWidth > 500 ? 12 : 10);
 
-    console.log(dataNormalized);
-
     const overlayRectWidth =
       (size.width - margin.left - margin.right + rectWidth) / 8;
 
@@ -199,10 +198,10 @@
           "left",
           x(d.date) +
             (x(d.date) > size.width / 2
-              ? window.innerWidth > 400
+              ? window.innerWidth > 414
                 ? -420
                 : -rectWidth * 13.75
-              : window.innerWidth > 400
+              : window.innerWidth > 414
               ? rectWidth * 1.15
               : rectWidth * 2.5) /
               2 +

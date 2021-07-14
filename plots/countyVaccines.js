@@ -178,7 +178,6 @@
     };
 
     const lastData = data[data.length - 1];
-    console.log(lastData);
     endText(
       lastData.date,
       lastData.singlePct - lastData.fullPct,
@@ -199,8 +198,217 @@
     //   (lastData.fullPct + lastData.singlePct) / 2,
     //   "#adadad"
     // );
+    const hoverOver = svg.append("g");
 
-    const legend = d3.select("#vaccineLegend").style("width", size.width);
+    const adultDate = new Date(2021, 4 - 1, 5);
+    const adultData = data.find(
+      ({ date }) => date.getTime() === adultDate.getTime()
+    );
+    hoverOver
+      .append("line")
+      .attr("x1", x(adultDate))
+      .attr("x2", x(adultDate))
+      .attr("y1", y(0))
+      .attr("y2", y(adultData.singlePct))
+      .attr("stroke-width", 2)
+      .attr("stroke", "black")
+      .style("stroke-dasharray", "3, 3");
+
+    hoverOver
+      .append("line")
+      .attr("x1", x(adultDate) - (window.innerWidth < 500 ? 120 : 180))
+      .attr("x2", x(adultDate))
+      .attr("y1", y(adultData.singlePct))
+      .attr("y2", y(adultData.singlePct))
+      .attr("stroke-width", 2)
+      .attr("stroke", "black")
+      .style("stroke-dasharray", "3, 3");
+    if (window.innerWidth < 500) {
+      hoverOver
+        .append("text")
+        .attr("x", x(adultDate) - 120)
+        .attr("y", y(adultData.singlePct) - 5 - 48)
+        .text("April 5, 2021")
+        .style("font-weight", "bold");
+      hoverOver
+        .append("text")
+        .attr("x", x(adultDate) - 120)
+        .attr("y", y(adultData.singlePct) - 5 - 32)
+        .text("Residents 16+");
+      hoverOver
+        .append("text")
+        .attr("x", x(adultDate) - 120)
+        .attr("y", y(adultData.singlePct) - 5 - 16)
+        .text("become eligible");
+      hoverOver
+        .append("text")
+        .attr("x", x(adultDate) - 120)
+        .attr("y", y(adultData.singlePct) - 5)
+        .text("for the vaccine.");
+    } else {
+      hoverOver
+        .append("text")
+        .attr("x", x(adultDate) - 180)
+        .attr("y", y(adultData.singlePct) - 5 - 32)
+        .text("April 5, 2021")
+        .style("font-weight", "bold");
+      hoverOver
+        .append("text")
+        .attr("x", x(adultDate) - 180)
+        .attr("y", y(adultData.singlePct) - 5 - 16)
+        .text("Residents 16+ become");
+      hoverOver
+        .append("text")
+        .attr("x", x(adultDate) - 180)
+        .attr("y", y(adultData.singlePct) - 5)
+        .text("eligible for the vaccine.");
+    }
+
+    // const peakDate = new Date(2021, 4 - 1, 17);
+    // const peakData = data.find(
+    //   ({ date }) => date.getTime() === peakDate.getTime()
+    // );
+    // hoverOver
+    //   .append("line")
+    //   .attr("x1", x(peakDate))
+    //   .attr("x2", x(peakDate))
+    //   .attr("y1", y(peakData.fullPct))
+    //   .attr("y2", y(peakData.singlePct))
+    //   .attr("stroke-width", 2)
+    //   .attr("stroke", "black")
+    //   .style("stroke-dasharray", "3, 3");
+    // hoverOver
+    //   .append("line")
+    //   .attr("x1", x(peakDate) - 50)
+    //   .attr("x2", x(peakDate))
+    //   .attr("y1", y(peakData.singlePct))
+    //   .attr("y2", y(peakData.singlePct))
+    //   .attr("stroke-width", 2)
+    //   .attr("stroke", "black")
+    //   .style("stroke-dasharray", "3, 3");
+
+    // hoverOver
+    //   .append("text")
+    //   .attr("x", x(peakDate) - 50)
+    //   .attr("y", y(peakData.singlePct) - 5)
+    //   .text("hello 2");
+    const createLine = (d) => {
+      svg.selectAll(".vaccineHoverArea").remove();
+      const hoverArea = svg.append("g").attr("class", "vaccineHoverArea");
+      hoverArea
+        .append("line")
+        .attr("x1", x(d.date))
+        .attr("x2", x(d.date))
+        .attr("y1", y(0))
+        .attr("y2", y(d.singlePct))
+        .attr("stroke-width", 2)
+        .attr("stroke", "black")
+        .style("stroke-dasharray", "3, 3");
+      hoverArea
+        .append("circle")
+        .attr("cx", x(d.date))
+        .attr("cy", y(d.fullPct))
+        .attr("r", 3)
+        .attr("stroke-width", 2)
+        .attr("stroke", "black");
+      hoverArea
+        .append("circle")
+        .attr("cx", x(d.date))
+        .attr("cy", y(d.singlePct))
+        .attr("r", 3)
+        .attr("stroke-width", 2)
+        .attr("stroke", "black");
+      if (window.innerWidth > 400) {
+        hoverArea
+          .append("text")
+          .text("Fully Vaccinated: " + Math.round(d.fullPct * 1000) / 10 + "%")
+          .attr("x", x(d.date) + (x(d.date) > size.width / 2 ? -5 : 5))
+          .attr("y", y(d.fullPct))
+          .attr("text-anchor", x(d.date) > size.width / 2 ? "end" : "start")
+          .attr("alignment-baseline", "middle");
+        hoverArea
+          .append("text")
+          .text(
+            "Partially Vaccinated: " +
+              Math.round((d.singlePct - d.fullPct) * 1000) / 10 +
+              "%"
+          )
+          .attr("x", x(d.date) + (x(d.date) > size.width / 2 ? -5 : 5))
+          .attr("y", y(d.singlePct))
+          .attr("text-anchor", x(d.date) > size.width / 2 ? "end" : "start")
+          .attr("alignment-baseline", "middle");
+      } else {
+        hoverArea
+          .append("text")
+          .text("Fully Vaccinated:")
+          .attr("x", x(d.date) + (x(d.date) > size.width / 2 ? -5 : 5))
+          .attr("y", y(d.fullPct) - 16)
+          .attr("text-anchor", x(d.date) > size.width / 2 ? "end" : "start")
+          .attr("alignment-baseline", "middle");
+        hoverArea
+          .append("text")
+          .text(Math.round(d.fullPct * 1000) / 10 + "%")
+          .attr("x", x(d.date) + (x(d.date) > size.width / 2 ? -5 : 5))
+          .attr("y", y(d.fullPct))
+          .attr("text-anchor", x(d.date) > size.width / 2 ? "end" : "start")
+          .attr("alignment-baseline", "middle");
+        hoverArea
+          .append("text")
+          .text("Partially Vaccinated:")
+          .attr("x", x(d.date) + (x(d.date) > size.width / 2 ? -5 : 5))
+          .attr("y", y(d.singlePct) - 16)
+          .attr("text-anchor", x(d.date) > size.width / 2 ? "end" : "start")
+          .attr("alignment-baseline", "middle");
+        hoverArea
+          .append("text")
+          .text(Math.round((d.singlePct - d.fullPct) * 1000) / 10 + "%")
+          .attr("x", x(d.date) + (x(d.date) > size.width / 2 ? -5 : 5))
+          .attr("y", y(d.singlePct))
+          .attr("text-anchor", x(d.date) > size.width / 2 ? "end" : "start")
+          .attr("alignment-baseline", "middle");
+      }
+      hoverArea
+        .append("text")
+        .text(d3.timeFormat("%m/%d/%Y")(d.date))
+        .attr("x", x(d.date) + (x(d.date) > size.width / 2 ? -5 : 5))
+        .attr("y", size.height - margin.bottom - 7)
+        .attr("text-anchor", x(d.date) > size.width / 2 ? "end" : "start")
+        .attr("alignment-baseline", "middle");
+    };
+    svg.on("mouseenter touchstart", () => {
+      svg.on("mousemove touchout", (event) => {
+        hoverOver.style("fill-opacity", 0);
+        hoverOver.style("stroke-opacity", 0);
+        d3.selectAll(".vaccineLine").style("stroke-width", 0.2);
+        d3.selectAll(".vaccineArea").style("fill-opacity", 0.2);
+        const mouseX = d3.pointer(event)[0];
+
+        const xVal = x.invert(mouseX);
+
+        // ill make a better thing later
+        const closestPoint = data.reduce((best, curr) => {
+          if (
+            Math.abs(best.date.getTime() - xVal.getTime()) <
+            Math.abs(curr.date.getTime() - xVal.getTime())
+          ) {
+            return best;
+          }
+          return curr;
+        });
+        createLine(closestPoint);
+      });
+
+      svg.on("mouseleave touchend", () => {
+        d3.selectAll(".vaccineLine").style("stroke-width", 5);
+        d3.selectAll(".vaccineArea").style("fill-opacity", 0.5);
+
+        hoverOver.style("fill-opacity", 1);
+        hoverOver.style("stroke-opacity", 1);
+        svg.selectAll(".vaccineHoverArea").remove();
+      });
+    });
+
+    const legend = d3.select("#vaccineLegend").style("width", "100%");
 
     legend.selectAll("*").remove();
 
@@ -235,12 +443,18 @@
         d3.select(`#vaccine-${d.toLowerCase()}`).style("fill-opacity", 0.5);
         d3.select(`#vaccineLine-${d.toLowerCase()}`).style("stroke-width", 5);
         d3.select(`#endLabel-${d.toLowerCase()}`).style("fill-opacity", 1);
+
+        hoverOver.style("fill-opacity", 0.2);
+        hoverOver.style("stroke-opacity", 0.2);
       })
       .on("mouseleave touchend touchcancel", () => {
         d3.selectAll(".vaccineLegends").style("opacity", 1);
         d3.selectAll(".vaccineLine").style("stroke-width", 5);
         d3.selectAll(".vaccineEndLabel").style("fill-opacity", 1);
         d3.selectAll(".vaccineArea").style("fill-opacity", 0.5);
+
+        hoverOver.style("fill-opacity", 1);
+        hoverOver.style("stroke-opacity", 1);
       });
 
     // svg.on("mousemove", function (event) {

@@ -25,6 +25,10 @@ p {
   margin: 0;
 }
 
+h1 {
+  font-weight: normal;
+}
+
 hr {
   border-bottom: none;
   border-width: 2px;
@@ -41,4 +45,16 @@ a,
 a:visited {
   text-decoration: none;
   color: black;
+}
+
+#vacEmbed,
+#varEmbed,
+#ucsbEmbed {
+  margin: 0 15px;
+  word-wrap: break-word;
+}
+
+.elab {
+  align-self: flex-start;
+  margin-left: 15px;
 }
