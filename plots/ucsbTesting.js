@@ -1,3 +1,9 @@
+const closeUCSB = () => {
+  d3.select("#ucsbLine").attr("stroke-opacity", 1);
+  d3.select("#ucsbLineLab").attr("fill-opacity", 1);
+  d3.selectAll(".ucsbHoverArea").remove();
+};
+
 (async () => {
   const parseTime = d3.timeParse("%m/%d/%Y");
 
@@ -171,9 +177,7 @@
     });
 
     svg.on("mouseleave touchend touchcancel", () => {
-      d3.select("#ucsbLine").attr("stroke-opacity", 1);
-      d3.select("#ucsbLineLab").attr("fill-opacity", 1);
-      svg.selectAll(".ucsbHoverArea").remove();
+      closeUCSB();
     });
   };
 

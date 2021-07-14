@@ -1,3 +1,13 @@
+const closeVaccines = () => {
+  d3.selectAll(".vaccineLegends").style("opacity", 1);
+  d3.selectAll(".vaccineLine").style("stroke-width", 5);
+  d3.selectAll(".vaccineEndLabel").style("fill-opacity", 1);
+  d3.selectAll(".vaccineArea").style("fill-opacity", 0.5);
+  const hoverOver = d3.select("#vaccineHoverOver");
+  hoverOver.style("fill-opacity", 1);
+  hoverOver.style("stroke-opacity", 1);
+};
+
 (async () => {
   //https://experience.arcgis.com/experience/030e625c69a04378b2756de161f82ef6
   // Variant Surveillance
@@ -198,7 +208,7 @@
     //   (lastData.fullPct + lastData.singlePct) / 2,
     //   "#adadad"
     // );
-    const hoverOver = svg.append("g");
+    const hoverOver = svg.append("g").attr("id", "vaccineHoverOver");
 
     const adultDate = new Date(2021, 4 - 1, 5);
     const adultData = data.find(
@@ -399,11 +409,7 @@
       });
 
       svg.on("mouseleave touchend", () => {
-        d3.selectAll(".vaccineLine").style("stroke-width", 5);
-        d3.selectAll(".vaccineArea").style("fill-opacity", 0.5);
-
-        hoverOver.style("fill-opacity", 1);
-        hoverOver.style("stroke-opacity", 1);
+        closeVaccines();
         svg.selectAll(".vaccineHoverArea").remove();
       });
     });
@@ -448,13 +454,7 @@
         hoverOver.style("stroke-opacity", 0.2);
       })
       .on("mouseleave touchend touchcancel", () => {
-        d3.selectAll(".vaccineLegends").style("opacity", 1);
-        d3.selectAll(".vaccineLine").style("stroke-width", 5);
-        d3.selectAll(".vaccineEndLabel").style("fill-opacity", 1);
-        d3.selectAll(".vaccineArea").style("fill-opacity", 0.5);
-
-        hoverOver.style("fill-opacity", 1);
-        hoverOver.style("stroke-opacity", 1);
+        closeVaccines();
       });
 
     // svg.on("mousemove", function (event) {
@@ -467,5 +467,6 @@
     //   console.log(idx);
     // });
   };
+
   makePlot();
 })();

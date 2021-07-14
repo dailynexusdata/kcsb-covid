@@ -1,3 +1,10 @@
+const closeVariants = () => {
+  d3.selectAll(".variantLegends").style("opacity", 1);
+  d3.selectAll(".variants").style("fill-opacity", 1);
+  d3.selectAll(".points").remove();
+  d3.selectAll(".pointLabels").remove();
+};
+
 (async () => {
   const parseTime = d3.timeParse("%Y-%m-%d");
   function shuffleArray(arr) {
@@ -333,10 +340,7 @@
           .attr("text-anchor", "middle");
       })
       .on("mouseleave touchend touchcancel", () => {
-        d3.selectAll(".variantLegends").style("opacity", 1);
-        d3.selectAll(".variants").style("fill-opacity", 1);
-        d3.selectAll(".points").remove();
-        d3.selectAll(".pointLabels").remove();
+        closeVariants();
       });
   };
 

@@ -15,3 +15,18 @@ document.getElementById(
 document.getElementById(
   "ucsbEmbed"
 ).innerText = `<iframe src="https://dailynexusdata.github.io/kcsb-covid/#ucsbTesting" height="558px" width="100%" style="border: none; overflow: hidden;" scrolling="no" frameborder="0"></iframe>`;
+
+window.addEventListener("click", function (event) {
+  const vacDiv = document.getElementById("vaccines");
+  if (!vacDiv.contains(event.target)) {
+    closeVaccines();
+  }
+  const varDiv = document.getElementById("variants");
+  if (!varDiv.contains(event.target)) {
+    closeVariants();
+  }
+  const ucsbDiv = document.getElementById("ucsbTesting");
+  if (!ucsbDiv.contains(event.target)) {
+    closeUCSB();
+  }
+});
