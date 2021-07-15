@@ -423,7 +423,7 @@ const closeVaccines = () => {
       .style("display", "black")
       .style("line-height", "18pt")
       .html(
-        `County Percentage of<span class='squares'></span>and<span class='squares'></span>including adults and children.`
+        `County Percentage of<span class='squares'></span>and<span class='squares'></span>residents including adults and children.`
       );
 
     legend

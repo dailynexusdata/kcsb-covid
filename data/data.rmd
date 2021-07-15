@@ -17,6 +17,9 @@ vaccines <- read.csv(
     ) 
 
 vaccines %>%
+    arrange(desc(partial))
+
+vaccines %>%
     mutate(full = full + partial) %>%
     gather("type", "n", -date) %>%
 ggplot(aes(x=date, y=n, group=type)) +
@@ -66,6 +69,10 @@ var <- variants %>%
     mutate(date = as.Date(date, "%m/%d/%Y"))
 
 var <- var[order(as.Date(var$date, "%m/%d/%Y")),]
+
+variants%>%
+    filter(variant != "no_interest") %>%
+    summarise(count = sum(count))
 
 write.csv(var, "variants.csv", na="0", row.names=F)
 ```

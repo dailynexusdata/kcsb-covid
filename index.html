@@ -20,7 +20,7 @@
             <hr />
             <div class="container" id="vaccines">
                 <div>
-                    <h1>Santa Barbara County COVID Vaccines</h1>
+                    <h1>Santa Barbara County COVID-19 Vaccines</h1>
                 </div>
                 <div id="vaccineLegend"></div>
                 <svg id="vaccinePlot"></svg>
@@ -36,7 +36,7 @@
             <hr />
             <div class="container" id="variants">
                 <div>
-                    <h1>Santa Barbara County COVID Variants</h1>
+                    <h1>Santa Barbara County COVID-19 Variants</h1>
                 </div>
                 <div id="variantLegend"></div>
                 <div id="variantPlot"></div>
@@ -44,8 +44,8 @@
                     <p>Chart: Alex Rudolph / Daily Nexus </p>
                     <p><a href="https://experience.arcgis.com/experience/030e625c69a04378b2756de161f82ef6">Source: Santa
                             Barbara County Public Health</a></p>
-                    <p style="margin-top: 10px">Santa Barbara County Public Health reports the number of variants of
-                        interest or concern in the 739 samples since November.
+                    <p style="margin-top: 10px">Santa Barbara County Public Health reports the types of variants from
+                        739 sample tests since November.
                     </p>
                 </div>
             </div>
@@ -55,13 +55,15 @@
             <hr />
             <div class="container" id="ucsbTesting">
                 <div>
-                    <h1>UCSB Student On Campus Testing</h1>
+                    <h1>UCSB Student On-Campus Testing</h1>
+                    <p>Daily COVID-19 testing of undergraduate and graduate students since fall quarter 2020.
+                    </p>
                 </div>
                 <div id="ucsbLegend"></div>
                 <div id="ucsbPlot"></div>
                 <div class="footer">
                     <p>Chart: Alex Rudolph & Emerson Domingo / Daily Nexus </p>
-                    <p><a href="https://www.ucsb.edu/COVID-19-information/dashboard">Source: UCSB COVID Information
+                    <p><a href="https://www.ucsb.edu/COVID-19-information/dashboard">Source: UCSB COVID-19 Information
                             Dashboard</a></p>
                 </div>
             </div>
@@ -70,6 +72,44 @@
             <b class="elab">Embed:</b>
             <p id="ucsbEmbed"></p>
             <hr />
+            <h1>Iframe testing:</h1>
+            <hr />
+            <style>
+                @media (max-width: 585px) {
+                    #vaccineIframe {
+                        height: 558px;
+                    }
+                }
+
+                @media (max-width: 407px) {
+                    #vaccineIframe {
+                        height: 576px;
+                    }
+                }
+
+                @media (max-width: 390px) {
+                    #vaccineIframe {
+                        height: 600px;
+                    }
+                }
+
+                @media (max-width: 336px) {
+                    #vaccineIframe {
+                        height: 637px;
+                    }
+                }
+            </style> <iframe id="vaccineIframe" src="https://dailynexusdata.github.io/kcsb-covid/#vaccines"
+                height="521px" width="100%" style="border: none; overflow: hidden;" scrolling="no"
+                frameborder="0"></iframe>
+            <hr />
+            <!-- <style>
+                @media (max-width: 390px) {
+                    #variants {
+                        height: 600px;
+                    }
+                }
+            </style><iframe src="https://dailynexusdata.github.io/kcsb-covid/#variants" height="531px" width="100%"
+                style="border: none; overflow: hidden;" scrolling="no" frameborder="0"></iframe> -->
         </main>
     </body>
 
