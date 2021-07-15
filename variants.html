@@ -7,23 +7,25 @@
         <meta name='viewport' content='width=device-width, initial-scale=1.0'>
         <link rel="stylesheet" href="styles.css">
         <script src="https://d3js.org/d3.v7.min.js"></script>
-        <script src='plots/countyVaccines.js' defer></script>
-        <script src='plots/index.js' defer></script>
+        <script src='plots/countyVariants.js' defer></script>
         <title>Daily Nexus / KCSB Collab</title>
     </head>
 
     <body style='width: 100%; display: flex; justify-content: center; margin: 0; margin-bottom: 100px'>
         <main style='max-width: 700px; display: flex; flex-direction: column; align-items: center;'>
-            <div class="container" id="vaccines">
+            <div class="container" id="variants">
                 <div>
-                    <h1>Santa Barbara County COVID-19 Vaccines</h1>
+                    <h1>Santa Barbara County COVID-19 Variants</h1>
                 </div>
-                <div id="vaccineLegend"></div>
-                <svg id="vaccinePlot"></svg>
+                <div id="variantLegend"></div>
+                <div id="variantPlot"></div>
                 <div class="footer">
                     <!-- <p>Chart: Alex Rudolph / Daily Nexus </p> -->
-                    <p><a href="https://data.chhs.ca.gov/dataset">Source: California Health and Human Services
-                            Agency</a></p>
+                    <p><a href="https://experience.arcgis.com/experience/030e625c69a04378b2756de161f82ef6">Source: Santa
+                            Barbara County Public Health</a></p>
+                    <p style="margin-top: 10px">Santa Barbara County Public Health reports the types of variants from
+                        739 sample tests since November.
+                    </p>
                 </div>
             </div>
         </main>
