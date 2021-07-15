@@ -7,7 +7,7 @@ document.getElementById(
 
 document.getElementById(
   "ucsbEmbed"
-).innerText = `<iframe src="https://dailynexusdata.github.io/kcsb-covid/#ucsbTesting" height="558px" width="100%" style="border: none; overflow: hidden;" scrolling="no" frameborder="0"></iframe>`;
+).innerText = ` @media (max-width: 475px){#ucsbIframe{height: 522px;}}@media (max-width: 370px){#ucsbIframe{height: 540px;}}</style><iframe id="ucsbIframe" src="https://dailynexusdata.github.io/kcsb-covid/ucsbTesting/#ucsbTesting" height="488px" width="100%" style="border: none; overflow: hidden;" scrolling="no" frameborder="0"></iframe>`;
 
 const closeStuff = function (event) {
   const vacDiv = document.getElementById("vaccinePlot");
