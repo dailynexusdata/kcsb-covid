@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+    <head>
+        <meta charset='UTF-8'>
+        <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+        <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+        <link rel="stylesheet" href="styles.css">
+        <script src="https://d3js.org/d3.v7.min.js"></script>
+        <script src='plots/ucsbTesting.js' defer></script>
+        <title>Daily Nexus / KCSB Collab</title>
+    </head>
+
+    <body style='width: 100%; display: flex; justify-content: center; margin: 0; margin-bottom: 100px'>
+        <main style='max-width: 700px; display: flex; flex-direction: column; align-items: center;'>
+
+            <div class="container" id="ucsbTesting">
+                <div>
+                    <h1>UCSB Student On-Campus Testing</h1>
+                    <p>Daily COVID-19 testing of undergraduate and graduate students since fall quarter 2020.
+                    </p>
+                </div>
+                <div id="ucsbLegend"></div>
+                <div id="ucsbPlot"></div>
+                <div class="footer">
+                    <!-- <p>Chart: Alex Rudolph & Emerson Domingo / Daily Nexus </p> -->
+                    <p><a href="https://www.ucsb.edu/COVID-19-information/dashboard">Source: UCSB COVID-19 Information
+                            Dashboard</a></p>
+                </div>
+            </div>
+        </main>
+    </body>
+
+</html>
