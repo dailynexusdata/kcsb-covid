@@ -37,7 +37,7 @@ const closeVaccines = () => {
 
   const makePlot = () => {
     const size = {
-      width: Math.min(600, window.innerWidth * 0.95),
+      width: Math.min(600, window.innerWidth) - 40,
       height: 400,
     };
 
