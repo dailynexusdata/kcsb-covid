@@ -1,6 +1,6 @@
 document.getElementById(
   "vacEmbed"
-).innerText = `<style> @media (max-width: 585px) { #vaccineIframe { height: 558px; } } @media (max-width: 407px) { #vaccineIframe { height: 576px; } } @media (max-width: 390px) { #vaccineIframe { height: 600px; } } @media (max-width: 336px) { #vaccineIframe { height: 637px; } } </style> <iframe id="vaccineIframe" src="https://dailynexusdata.github.io/kcsb-covid/#vaccines" height="521px" width="100%" style="border: none; overflow: hidden;" scrolling="no" frameborder="0"></iframe>`;
+).innerText = `<style>@media (max-width: 580px){#vaccineIframe{height: 534px;}}@media (max-width: 407px){#vaccineIframe{height: 552px;}}@media (max-width: 390px){#vaccineIframe{height: 576px;}}</style> <iframe id="vaccineIframe" src="https://dailynexusdata.github.io/kcsb-covid/#vaccines" height="500px" width="100%" style="border: none; overflow: hidden;" scrolling="no" frameborder="0"></iframe>`;
 document.getElementById(
   "varEmbed"
 ).innerText = `<iframe src="https://dailynexusdata.github.io/kcsb-covid/#variants" height="531px" width="100%" style="border: none; overflow: hidden;" scrolling="no" frameborder="0"></iframe>`;

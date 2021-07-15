@@ -59,10 +59,7 @@ const closeVariants = () => {
       .style("justify-content", "center");
 
     container.selectAll("*").remove();
-    const svg = container
-      .append("div")
-      .style("position", "absolute")
-      .append("svg");
+    const svg = container.append("div").append("svg");
 
     svg.attr("width", size.width).attr("height", size.height);
 
