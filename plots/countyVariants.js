@@ -17,8 +17,8 @@ const closeVariants = () => {
   }
   const data = (
     await d3.csv(
-      "data/variants.csv"
-      // "https://raw.githubusercontent.com/dailynexusdata/kcsb-covid/main/data/variants.csv"
+      // "data/variants.csv"
+      "https://raw.githubusercontent.com/dailynexusdata/kcsb-covid/main/data/variants.csv"
     )
   ).map(({ date, ...variants }) => {
     Object.entries(variants).forEach(([vr, val]) => {

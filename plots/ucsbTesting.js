@@ -11,14 +11,16 @@ const closeUCSB = () => {
     makePlot();
   });
 
-  const data = (await d3.csv("data/ucsbData.csv")).map(
-    ({ date, count_average }) => {
-      return {
-        date: parseTime(date),
-        avg: +count_average,
-      };
-    }
-  );
+  const data = (
+    await d3.csv(
+      "https://raw.githubusercontent.com/dailynexusdata/kcsb-covid/main/data/ucsbData.csv"
+    )
+  ).map(({ date, count_average }) => {
+    return {
+      date: parseTime(date),
+      avg: +count_average,
+    };
+  });
 
   console.log(data);
 

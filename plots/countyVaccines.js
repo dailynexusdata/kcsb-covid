@@ -15,8 +15,8 @@ const closeVaccines = () => {
 
   const data = (
     await d3.csv(
-      "data/county_vaccines.csv"
-      // "https://raw.githubusercontent.com/dailynexusdata/kcsb-covid/main/data/county_vaccines.csv"
+      // "data/county_vaccines.csv"
+      "https://raw.githubusercontent.com/dailynexusdata/kcsb-covid/main/data/county_vaccines.csv"
     )
   ).map(({ date, fullPct, singlePct }) => {
     return {
