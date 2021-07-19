@@ -6,16 +6,23 @@ const closeVariants = () => {
 };
 
 (async () => {
-  d3.select("#kcsb-covid-variants-d3").html(`<div>
-  <h1>Santa Barbara County COVID-19 Variants</h1>
+  d3
+    .select("#kcsb-covid-variants-d3")
+    .style("max-width", "600px")
+    .style("margin", "0 10px")
+    .style("font-family", "Helvetica Neue, Helvetica, Arial, sans-serif")
+    .html(`<div>
+  <h1 style="margin: 0;font-weight: normal;
+  font-size: 22pt;">Santa Barbara County COVID-19 Variants</h1>
 </div>
 <div id="variantLegend"></div>
 <div id="variantPlot"></div>
 <div class="footer">
   <!-- <p>Chart: Alex Rudolph / Daily Nexus </p> -->
-  <p><a href="https://experience.arcgis.com/experience/030e625c69a04378b2756de161f82ef6">Source: Santa
+  <p style="margin: 0"><a href="https://experience.arcgis.com/experience/030e625c69a04378b2756de161f82ef6" style="text-decoration: none;
+  color: black;">Source: Santa
           Barbara County Public Health</a></p>
-  <p style="margin-top: 10px">Santa Barbara County Public Health reports the types of variants from
+  <p style="margin: 0 ">Santa Barbara County Public Health reports the types of variants from
       739 sample tests since November.
   </p>
 </div>`);
@@ -53,13 +60,13 @@ const closeVariants = () => {
 
   const makePlot = () => {
     const size = {
-      width: Math.min(600, window.innerWidth) - 40,
+      width: Math.min(600, window.innerWidth) - 30,
       height: 400,
     };
 
     const margin = {
       top: 30,
-      bottom: 40,
+      bottom: 30,
       left: window.innerWidth > 500 ? 60 : 35,
       right: window.innerWidth > 500 ? 60 : 35,
     };
@@ -75,7 +82,10 @@ const closeVariants = () => {
     container.selectAll("*").remove();
     const svg = container.append("div").append("svg");
 
-    svg.attr("width", size.width).attr("height", size.height);
+    svg
+      .attr("width", size.width)
+      .attr("height", size.height)
+      .style("align-self: center");
 
     const x = d3
       .scaleTime()
@@ -217,10 +227,10 @@ const closeVariants = () => {
           x(d.date) +
             (x(d.date) > size.width / 2
               ? window.innerWidth > 414
-                ? -420
+                ? -rectWidth - 340
                 : -rectWidth * 13.75
               : window.innerWidth > 414
-              ? rectWidth * 1.15
+              ? rectWidth * 2.2
               : rectWidth * 2.5) /
               2 +
             "px"

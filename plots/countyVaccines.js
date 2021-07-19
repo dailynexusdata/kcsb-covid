@@ -9,14 +9,21 @@ const closeVaccines = () => {
 };
 
 (async () => {
-  d3.select("#kcsb-covid-vaccines-d3").html(`     <div>
-  <h1>Santa Barbara County COVID-19 Vaccines</h1>
+  d3
+    .select("#kcsb-covid-vaccines-d3")
+    .style("max-width", "600px")
+    .style("margin", "0 10px")
+    .style("font-family", "Helvetica Neue, Helvetica, Arial, sans-serif")
+    .html(`     <div>
+  <h1 style="margin: 0;font-weight: normal;
+  font-size: 22pt;">Santa Barbara County COVID-19 Vaccines</h1>
 </div>
 <div id="vaccineLegend"></div>
-<svg id="vaccinePlot"></svg>
+<svg id="vaccinePlot" style="align-self: center"></svg>
 <div class="footer">
   <!-- <p>Chart: Alex Rudolph / Daily Nexus </p> -->
-  <p><a href="https://data.chhs.ca.gov/dataset">Source: California Health and Human Services
+  <p style="margin: 0"><a href="https://data.chhs.ca.gov/dataset" style="text-decoration: none;
+  color: black;">Source: California Health and Human Services
           Agency</a></p>
 </div>`);
 
@@ -433,6 +440,7 @@ const closeVaccines = () => {
       .append("p")
       .style("display", "black")
       .style("line-height", "18pt")
+      .style("margin", "0px")
       .html(
         `County Percentage of<span class='squares'></span>and<span class='squares'></span>residents including adults and children.`
       );

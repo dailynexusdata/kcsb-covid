@@ -5,16 +5,22 @@ const closeUCSB = () => {
 };
 
 (async () => {
-  d3.select("#kcsb-covid-ucsb-testing-d3").html(`<div>
-  <h1>UCSB Student On-Campus Testing</h1>
-  <p>Daily COVID-19 testing of undergraduate and graduate students since fall quarter 2020.
+  d3
+    .select("#kcsb-covid-ucsb-testing-d3")
+    .style("max-width", "600px")
+    .style("font-family", "Helvetica Neue, Helvetica, Arial, sans-serif")
+    .style("margin", "0 10px").html(`<div>
+    <h1 style="margin: 0;font-weight: normal;
+    font-size: 22pt;">UCSB Student On-Campus Testing</h1>
+  <p style="margin: 0">Daily COVID-19 testing of undergraduate and graduate students since fall quarter 2020.
   </p>
 </div>
 <div id="ucsbLegend"></div>
-<div id="ucsbPlot"></div>
+<div id="ucsbPlot" style="align-self: center"></div>
 <div class="footer">
   <!-- <p>Chart: Alex Rudolph & Emerson Domingo / Daily Nexus </p> -->
-  <p><a href="https://www.ucsb.edu/COVID-19-information/dashboard">Source: UCSB COVID-19 Information
+  <p style="margin: 0"><a href="https://www.ucsb.edu/COVID-19-information/dashboard" style="text-decoration: none;
+  color: black;">Source: UCSB COVID-19 Information
           Dashboard</a></p>
 </div>`);
 
@@ -35,7 +41,7 @@ const closeUCSB = () => {
     };
   });
 
-  console.log(data);
+  // console.log(data);
 
   const makePlot = () => {
     const size = {
