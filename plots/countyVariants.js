@@ -6,6 +6,20 @@ const closeVariants = () => {
 };
 
 (async () => {
+  d3.select("#kcsb-covid-variants-d3").html(`<div>
+  <h1>Santa Barbara County COVID-19 Variants</h1>
+</div>
+<div id="variantLegend"></div>
+<div id="variantPlot"></div>
+<div class="footer">
+  <!-- <p>Chart: Alex Rudolph / Daily Nexus </p> -->
+  <p><a href="https://experience.arcgis.com/experience/030e625c69a04378b2756de161f82ef6">Source: Santa
+          Barbara County Public Health</a></p>
+  <p style="margin-top: 10px">Santa Barbara County Public Health reports the types of variants from
+      739 sample tests since November.
+  </p>
+</div>`);
+
   const parseTime = d3.timeParse("%Y-%m-%d");
   function shuffleArray(arr) {
     const array = [...arr];

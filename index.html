@@ -10,7 +10,7 @@
         <script src='plots/countyVaccines.js' defer></script>
         <script src='plots/countyVariants.js' defer></script>
         <script src='plots/ucsbTesting.js' defer></script>
-        <script src='plots/index.js' defer></script>
+        <!-- <script src='plots/index.js' defer></script> -->
         <title>Daily Nexus / KCSB Collab</title>
     </head>
 
@@ -18,118 +18,11 @@
         <main style='max-width: 700px; display: flex; flex-direction: column; align-items: center;'>
             <h1 style="margin: 0 15px;">Unmasking Isla Vista: A COVID-19 Community Archive</h1>
             <hr />
-            <div class="container" id="vaccines">
-                <div>
-                    <h1>Santa Barbara County COVID-19 Vaccines</h1>
-                </div>
-                <div id="vaccineLegend"></div>
-                <svg id="vaccinePlot"></svg>
-                <div class="footer">
-                    <!-- <p>Chart: Alex Rudolph / Daily Nexus </p> -->
-                    <p><a href="https://data.chhs.ca.gov/dataset">Source: California Health and Human Services
-                            Agency</a></p>
-                </div>
-            </div>
+            <div class="container" id="kcsb-covid-vaccines-d3"></div>
             <hr />
-            <b class="elab">Embed:</b>
-            <p id="vacEmbed"></p>
+            <div class="container" id="kcsb-covid-variants-d3"></div>
             <hr />
-            <div class="container" id="variants">
-                <div>
-                    <h1>Santa Barbara County COVID-19 Variants</h1>
-                </div>
-                <div id="variantLegend"></div>
-                <div id="variantPlot"></div>
-                <div class="footer">
-                    <!-- <p>Chart: Alex Rudolph / Daily Nexus </p> -->
-                    <p><a href="https://experience.arcgis.com/experience/030e625c69a04378b2756de161f82ef6">Source: Santa
-                            Barbara County Public Health</a></p>
-                    <p style="margin-top: 10px">Santa Barbara County Public Health reported the types of variants from
-                        739 sample tests since November.
-                    </p>
-                </div>
-            </div>
-            <hr />
-            <b class="elab">Embed:</b>
-            <p id="varEmbed"></p>
-            <hr />
-            <div class="container" id="ucsbTesting">
-                <div>
-                    <h1>UCSB Student On-Campus Testing</h1>
-                    <p>Daily COVID-19 testing of undergraduate and graduate students since fall quarter 2020.
-                    </p>
-                </div>
-                <div id="ucsbLegend"></div>
-                <div id="ucsbPlot"></div>
-                <div class="footer">
-                    <!-- <p>Chart: Alex Rudolph & Emerson Domingo / Daily Nexus </p> -->
-                    <p><a href="https://www.ucsb.edu/COVID-19-information/dashboard">Source: UCSB COVID-19 Information
-                            Dashboard</a></p>
-                </div>
-            </div>
-            <hr />
-            </div>
-            <b class="elab">Embed:</b>
-            <p id="ucsbEmbed"></p>
-            <hr />
-            <h1>Iframe testing:</h1>
-            <hr />
-            <style>
-                #vaccineIframe {
-                    padding: 0 -20;
-                }
-
-                @media (max-width: 580px) {
-                    #vaccineIframe {
-                        height: 539px;
-                    }
-                }
-
-                @media (max-width: 407px) {
-                    #vaccineIframe {
-                        height: 580px;
-                    }
-                }
-
-                @media (max-width: 390px) {
-                    #vaccineIframe {
-                        height: 590px;
-                    }
-                }
-            </style>
-            <iframe id="vaccineIframe" src="https://dailynexusdata.github.io/kcsb-covid/vaccines" height="505px"
-                width="100%" style="border: none; overflow: hidden;" scrolling="no" frameborder="0"></iframe>
-            <hr />
-            <style>
-                @media (max-width: 568px) {
-                    #variantsIframe {
-                        height: 605px;
-                    }
-                }
-
-                @media (max-width: 400px) {
-                    #variantsIframe {
-                        height: 630px;
-                    }
-                }
-            </style><iframe id="variantsIframe" src="https://dailynexusdata.github.io/kcsb-covid/variants"
-                height="535px" width="100%" style="border: none; overflow: hidden;" scrolling="no"
-                frameborder="0"></iframe>
-            <hr />
-            <style>
-                @media (max-width: 475px) {
-                    #ucsbIframe {
-                        height: 565px;
-                    }
-                }
-
-                @media (max-width: 370px) {
-                    #ucsbIframe {
-                        height: 550px;
-                    }
-                }
-            </style><iframe id="ucsbIframe" src="https://dailynexusdata.github.io/kcsb-covid/ucsbTesting" height="500px"
-                width="100%" style="border: none; overflow: hidden;" scrolling="no" frameborder="0"></iframe>
+            <div class="container" id="kcsb-covid-ucsb-testing-d3"></div>
         </main>
     </body>
 

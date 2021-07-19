@@ -9,6 +9,17 @@ const closeVaccines = () => {
 };
 
 (async () => {
+  d3.select("#kcsb-covid-vaccines-d3").html(`     <div>
+  <h1>Santa Barbara County COVID-19 Vaccines</h1>
+</div>
+<div id="vaccineLegend"></div>
+<svg id="vaccinePlot"></svg>
+<div class="footer">
+  <!-- <p>Chart: Alex Rudolph / Daily Nexus </p> -->
+  <p><a href="https://data.chhs.ca.gov/dataset">Source: California Health and Human Services
+          Agency</a></p>
+</div>`);
+
   //https://experience.arcgis.com/experience/030e625c69a04378b2756de161f82ef6
   // Variant Surveillance
   const parseTime = d3.timeParse("%Y-%m-%d");
