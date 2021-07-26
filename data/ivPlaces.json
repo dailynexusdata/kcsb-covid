@@ -1,0 +1,91 @@
+{
+  "suenoOrchard": {
+    "name": "Sueno Orchard",
+    "area": [
+      { "lat": 34.41260972969612, "lng": -119.86382246017457 },
+      { "lat": 34.41219372351975, "lng": -119.8638439178467 },
+      { "lat": 34.412189297911006, "lng": -119.86299365758897 },
+      { "lat": 34.41260972969612, "lng": -119.86299633979799 }
+    ],
+    "textLoc": { "lat": 34.4126827518434, "lng": -119.867 },
+    "text": "When encampments were cleared because of fire danger at Sueno Orchard, Camino Corto and Del Sol Vernal Pool, 14 people were provided shelter at relocation."
+  },
+  "caminoCorto": {
+    "name": "Camino Corto",
+    "area": [
+      { "lat": 34.41440533681617, "lng": -119.86815476429004 },
+      { "lat": 34.4144392471657, "lng": -119.86794662481319 },
+      { "lat": 34.414437034420764, "lng": -119.8674852848626 },
+      { "lat": 34.414479076564476, "lng": -119.86726534372337 },
+      { "lat": 34.41447951914026, "lng": -119.86669564246314 },
+      { "lat": 34.41451271029124, "lng": -119.86666345595496 },
+      { "lat": 34.41458573077705, "lng": -119.86665540932793 },
+      { "lat": 34.41505837097236, "lng": -119.86716127404637 },
+      { "lat": 34.41550976637284, "lng": -119.86749118575518 },
+      { "lat": 34.41576865381197, "lng": -119.86779159316485 },
+      { "lat": 34.415673507239454, "lng": -119.86789888152545 },
+      { "lat": 34.41544781028568, "lng": -119.86787742385333 },
+      { "lat": 34.415109706285364, "lng": -119.86777496359991 },
+      { "lat": 34.414937113388405, "lng": -119.86778569243597 },
+      { "lat": 34.41481541295335, "lng": -119.86786991370084 },
+      { "lat": 34.4146937124425, "lng": -119.86798524868847 },
+      { "lat": 34.41460077738768, "lng": -119.86807644379498 },
+      { "lat": 34.41450784222959, "lng": -119.8681354523933 }
+    ],
+    "textLoc": { "lat": 34.4139, "lng": -119.86815 },
+    "text": "When encampments were cleared because of fire danger at Sueno Orchard, Camino Corto and Del Sol Vernal Pool, 14 people were provided shelter at relocation."
+  },
+  "delSolVernalPool": {
+    "name": "Del Sol Vernal Pool",
+    "area": [
+      { "lat": 34.41723583330406, "lng": -119.86645746245814 },
+      { "lat": 34.41485939098144, "lng": -119.86647892013026 },
+      { "lat": 34.41482398723334, "lng": -119.86448872104121 },
+      { "lat": 34.41722255727753, "lng": -119.86446189895106 }
+    ],
+    "textLoc": { "lat": 34.417366, "lng": -119.86643224954607 },
+    "text": "When encampments were cleared because of fire danger at Sueno Orchard, Camino Corto and Del Sol Vernal Pool, 14 people were provided shelter at relocation."
+  },
+  "anisqOyo": {
+    "name": "Anis Q Oyo Park",
+    "area": [
+      { "lat": 34.41278763804156, "lng": -119.85695976021363 },
+      { "lat": 34.411860474478985, "lng": -119.85695707800463 },
+      { "lat": 34.411851623225985, "lng": -119.85612291100098 },
+      { "lat": 34.41239376074321, "lng": -119.85611754658295 },
+      { "lat": 34.41238933514505, "lng": -119.8554818630464 },
+      { "lat": 34.4127743613089, "lng": -119.85548990967348 }
+    ],
+    "textLoc": { "lat": 34.41282630656069, "lng": -119.8609 },
+    "text": "When Anis Q Oyo Park was closed, esimates of people living there ranged from 40-60."
+  },
+  "peoplesPark": {
+    "name": "People's Park",
+    "area": [
+      { "lat": 34.411851623293515, "lng": -119.85622912649434 },
+      { "lat": 34.41156395706149, "lng": -119.85622376207631 },
+      { "lat": 34.41151970063029, "lng": -119.8561352491788 },
+      { "lat": 34.411484295468476, "lng": -119.85595822338382 },
+      { "lat": 34.411473231352346, "lng": -119.85582679514211 },
+      { "lat": 34.411517487808126, "lng": -119.85570609573642 },
+      { "lat": 34.41160378782955, "lng": -119.85566049818318 },
+      { "lat": 34.41166353394608, "lng": -119.8555880785398 },
+      { "lat": 34.41171221593541, "lng": -119.85550761226932 },
+      { "lat": 34.41182064390069, "lng": -119.85550493006032 },
+      { "lat": 34.411851623293515, "lng": -119.85551297668738 }
+    ],
+    "textLoc": { "lat": 34.4115, "lng": -119.861 },
+    "text": "The number of people camping in Peoples Park fluctuated between 30-45 over time. 31 people were relocated to alternate safe shelter during closure process."
+  },
+  "pallet": {
+    "name": "Pallet Shelters",
+    "area": [
+      { "lat": 34.411201938753116, "lng": -119.85677200558258 },
+      { "lat": 34.41126389798563, "lng": -119.85665667059493 },
+      { "lat": 34.41148296776112, "lng": -119.85681223871782 },
+      { "lat": 34.41143428563836, "lng": -119.85693562033251 }
+    ],
+    "textLoc": { "lat": 34.4106, "lng": -119.8604 },
+    "text": "41 people were served at the pallet shelters, a maximum of 25 at one time. 27 people transitioned to permanent housing or other longer term temporary housing."
+  }
+}

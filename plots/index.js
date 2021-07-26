@@ -22,6 +22,10 @@ const closeStuff = function (event) {
   if (!ucsbDiv.contains(event.target)) {
     closeUCSB();
   }
+  const ucsbDiv = document.getElementById("kcsb-covid-houselessness-d3");
+  // if (!ucsbDiv.contains(event.target)) {
+  // closeUCSB();
+  // }
 };
 
 document.addEventListener("click", closeStuff);
