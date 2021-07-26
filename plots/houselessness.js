@@ -114,7 +114,7 @@
       .data(Object.entries(data))
       .join("g")
       .attr("fill", (_, i) => colors(i))
-      .on("mousemove", (event, d) => {
+      .on("mousemove touchstart", (event, d) => {
         const [mouseX, mouseY] = d3.pointer(event);
 
         d3.selectAll(".tooltipHouselessness").remove();
@@ -142,7 +142,7 @@
           .style("border", "1px solid #adadad88");
         tooltip.append("p").html(d[1].text).style("margin", 0);
       })
-      .on("mouseleave", () => {
+      .on("mouseleave touchend", () => {
         d3.selectAll("text[class^='houselessPlaceArea']").attr(
           "fill-opacity",
           1
