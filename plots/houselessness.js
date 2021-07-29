@@ -24,7 +24,7 @@
 
   container
     .append("h1")
-    .text("Houselessness in IV Throughout the Pandemic")
+    .text("Houselessness in I.V. Throughout the Pandemic")
     .style("font-family", "Helvetica Neue, Helvetica, Arial, sans-serif")
     .style("font-size", "18pt")
     .style("font-weight", "normal")

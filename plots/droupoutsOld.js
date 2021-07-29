@@ -5,8 +5,8 @@
 
   container
     .append("h1")
-    .text(
-      "Cancel / Lapse / Withdrawals Stay Constant In the Beginning of the Pandemic"
+    .html(
+      "Cancels/<wbr>Lapses/<wbr>Withdrawals Stay Constant in the Beginning of the Pandemic"
     )
     .style("max-width", "600px")
     .style("word-wrap", "break-word")

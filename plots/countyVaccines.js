@@ -16,7 +16,7 @@ const closeVaccines = () => {
     .style("font-family", "Helvetica Neue, Helvetica, Arial, sans-serif")
     .html(`     <div>
   <h1 style="margin: 0;font-weight: normal;
-  font-size: 18pt;">Santa Barbara County COVID-19 Vaccines Through June 2021</h1>
+  font-size: 18pt;">Santa Barbara County COVID-19 Vaccinations Through June 2021</h1>
 </div>
 <div id="vaccineLegend"></div>
 <svg id="vaccinePlot" style="align-self: center"></svg>
@@ -208,7 +208,7 @@ const closeVaccines = () => {
     const lastData = data[data.length - 1];
     endText(
       lastData.date,
-      lastData.singlePct - lastData.fullPct,
+      lastData.singlePct,
       lastData.singlePct,
       color.Partial,
       "partial"
@@ -442,19 +442,19 @@ const closeVaccines = () => {
       .style("line-height", "18pt")
       .style("margin", "0px")
       .html(
-        `County Percentage of<span class='squares'></span>and<span class='squares'></span>residents including adults and children.`
+        `County percentage of<span class='squares'></span>and<span class='squares'></span>residents including adults and children.`
       );
 
     legend
       .selectAll(".squares")
       .data(["Partial", "Full"])
-      .style("text-transform", "capitalize")
+      // .style("text-transform", "capitalize")
       .style("text-decoration", "underline")
       .style("text-decoration-color", (d) => color[d])
       .style("text-decoration-thickness", "0.2em")
       .style("text-underline-offset", "0.2em")
       .attr("class", "vaccineLegends")
-      .text((d) => `${d}${d === "Full" ? "" : "l"}y Vaccinated`)
+      .text((d) => `${d.toLowerCase()}${d === "Full" ? "" : "l"}y vaccinated`)
       .style("padding", "5px")
       .style("-webkit-user-select", "none")
       .style("user-select", "none")
