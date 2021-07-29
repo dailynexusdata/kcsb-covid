@@ -19,18 +19,20 @@
 
   const container = d3
     .select("#kcsb-covid-houselessness-d3")
+    .style("max-width", "600px")
     .style("margin", "0 10px");
 
   container
     .append("h1")
-    .text("Houselessness in IV")
+    .text("Houselessness in IV Throughout the Pandemic")
     .style("font-family", "Helvetica Neue, Helvetica, Arial, sans-serif")
-    .style("font-size", "22pt")
+    .style("font-size", "18pt")
     .style("font-weight", "normal")
     .style("margin", 0);
 
   container
     .append("p")
+    .style("font-family", "Helvetica Neue, Helvetica, Arial, sans-serif")
     .text(
       "The Continuum of Care data estimates that over 100 persons have resided in Isla Vista during the pandemic."
     )
@@ -114,7 +116,7 @@
       .data(Object.entries(data))
       .join("g")
       .attr("fill", (_, i) => colors(i))
-      .on("mousemove touchstart", (event, d) => {
+      .on("mouseenter mousemove touchstart", (event, d) => {
         const [mouseX, mouseY] = d3.pointer(event);
 
         d3.selectAll(".tooltipHouselessness").remove();
@@ -169,6 +171,8 @@
       .attr("x", (d) => getLatLng(d[1].textLoc).x)
       .attr("y", (d) => getLatLng(d[1].textLoc).y)
       .style("user-select", "none")
+      .style("-moz-user-select", "none")
+      .style("-webkit-user-select", "none")
       .style("font-weight", "bold")
       .style("font-size", "12pt");
   };

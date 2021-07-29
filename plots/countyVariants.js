@@ -13,7 +13,7 @@ const closeVariants = () => {
     .style("font-family", "Helvetica Neue, Helvetica, Arial, sans-serif")
     .html(`<div>
   <h1 style="margin: 0;font-weight: normal;
-  font-size: 22pt;">Santa Barbara County COVID-19 Variants</h1>
+  font-size: 18pt;">Santa Barbara County COVID-19 Variants Through June 2021</h1>
 </div>
 <div id="variantLegend"></div>
 <div id="variantPlot"></div>

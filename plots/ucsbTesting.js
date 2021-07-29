@@ -11,7 +11,7 @@ const closeUCSB = () => {
     .style("font-family", "Helvetica Neue, Helvetica, Arial, sans-serif")
     .style("margin", "0 10px").html(`<div>
     <h1 style="margin: 0;font-weight: normal;
-    font-size: 22pt;">UCSB Student On-Campus Testing</h1>
+    font-size: 18pt;">UCSB Student On-Campus Testing Through June 2021</h1>
   <p style="margin: 0">Daily COVID-19 testing of undergraduate and graduate students since fall quarter 2020.
   </p>
 </div>

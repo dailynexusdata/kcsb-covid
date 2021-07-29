@@ -16,7 +16,7 @@ const closeVaccines = () => {
     .style("font-family", "Helvetica Neue, Helvetica, Arial, sans-serif")
     .html(`     <div>
   <h1 style="margin: 0;font-weight: normal;
-  font-size: 22pt;">Santa Barbara County COVID-19 Vaccines</h1>
+  font-size: 18pt;">Santa Barbara County COVID-19 Vaccines Through June 2021</h1>
 </div>
 <div id="vaccineLegend"></div>
 <svg id="vaccinePlot" style="align-self: center"></svg>
