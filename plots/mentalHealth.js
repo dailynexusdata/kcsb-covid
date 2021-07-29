@@ -32,7 +32,7 @@
     .style("margin", "5px 0 0 0");
   const data = [
     {
-      caption: "factors affecting performance",
+      caption: "factors affecting academic performance",
       values: [
         { lab: "Stress", ugrad: 0.41, grad: 0.26 },
         { lab: "Anxiety", ugrad: 0.31, grad: 0.21 },
@@ -140,6 +140,67 @@
           .tickValues(scaleExtent)
           .tickFormat((d) => Math.round(d * 100) + "%")
       );
+
+    if (scaleExtent[2] === 0.5) {
+      svg
+        .append("text")
+        .attr("fill", colors.ugrad)
+        .style("font-family", "Helvetica Neue,Helvetica,Arial,sans-serif")
+        .style("font-weight", "bold")
+        .text("Undergrads")
+        .attr("x", x(0.5))
+        .attr("text-anchor", "end")
+        .attr("y", 60);
+      svg
+        .append("svg:defs")
+        .append("svg:marker")
+        .attr("id", "triangle2")
+        .attr("refX", 4)
+        .attr("refY", 2)
+        .attr("markerWidth", 4)
+        .attr("markerHeight", 4)
+        .attr("orient", "auto")
+        .append("path")
+        .attr("d", "M 4 0 0 2 4 4")
+        .attr("fill", colors.ugrad);
+      svg
+        .append("path")
+        .attr("d", `M ${x(0.42) + 5} 30 Q ${x(0.445)} 30, ${x(0.45) - 5} 45`)
+        .attr("fill", "none")
+        .attr("stroke", colors.ugrad)
+        .attr("stroke-width", 2)
+        .attr("marker-start", "url(#triangle2)");
+
+      svg
+        .append("text")
+        .attr("fill", colors.grad)
+        .style("font-family", "Helvetica Neue,Helvetica,Arial,sans-serif")
+        .style("font-weight", "bold")
+        .text("Grads")
+        .attr("x", x(0.3))
+        .attr("text-anchor", "start")
+        .attr("y", 140);
+
+      svg
+        .append("svg:defs")
+        .append("svg:marker")
+        .attr("id", "triangle1")
+        .attr("refX", 4)
+        .attr("refY", 2)
+        .attr("markerWidth", 4)
+        .attr("markerHeight", 4)
+        .attr("orient", "auto")
+        .append("path")
+        .attr("d", "M 4 0 0 2 4 4")
+        .attr("fill", colors.grad);
+      svg
+        .append("path")
+        .attr("d", `M ${x(0.18)} 128 Q ${x(0.25)} 140, ${x(0.29)} 135`)
+        .attr("fill", "none")
+        .attr("stroke", colors.grad)
+        .attr("stroke-width", 2)
+        .attr("marker-start", "url(#triangle1)");
+    }
   };
 
   const makeAllPlots = () => {
