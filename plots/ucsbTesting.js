@@ -11,7 +11,7 @@ const closeUCSB = () => {
     .style("font-family", "Helvetica Neue, Helvetica, Arial, sans-serif")
     .style("margin", "0 10px").html(`<div>
     <h1 style="margin: 0;
-    font-size: 18pt;">UCSB Student On-Campus Testing Through June 2021</h1>
+    font-size: 18pt;">UCSB Student On-Campus Testing Through JuLy 2021</h1>
   <p style="margin: 0; letter-spacing: normal; font-family: Helvetica Neue,Helvetica,Arial,sans-serif;  line-height: 18px">Daily COVID-19 testing of undergraduate and graduate students since Fall Quarter 2020.
   </p>
 </div>
@@ -32,7 +32,8 @@ const closeUCSB = () => {
 
   const data = (
     await d3.csv(
-      "https://raw.githubusercontent.com/dailynexusdata/kcsb-covid/main/data/ucsbData.csv"
+      "data/ucsbData.csv"
+      // "https://raw.githubusercontent.com/dailynexusdata/kcsb-covid/main/data/ucsbData.csv"
     )
   ).map(({ date, count_average }) => {
     return {
@@ -78,7 +79,7 @@ const closeUCSB = () => {
 
     const y = d3
       .scaleLinear()
-      .domain(d3.extent(data, (d) => d.avg))
+      .domain([0, 200])
       .range([size.height - margin.bottom, margin.top]);
 
     const axis = svg.append("g");
@@ -87,7 +88,7 @@ const closeUCSB = () => {
       .forEach((yVal, i) => {
         axis
           .append("text")
-          .text(yVal + (i === 3 ? " tests" : ""))
+          .text(yVal + (i === 4 ? " tests" : ""))
           .attr("fill", "#adadad")
           .attr("x", size.width - margin.right)
           .attr("y", y(yVal) + (window.innerWidth < 400 ? 18 : -5))
@@ -140,8 +141,8 @@ const closeUCSB = () => {
       .text("7-day Average")
       .attr("id", "ucsbLineLab")
       .attr("fill", "#4E79A7")
-      .attr("x", x(new Date(2020, 12, 30)))
-      .attr("y", y(205))
+      .attr("x", x(new Date(2020, 12, 25)))
+      .attr("y", y(200))
       .attr("font-weight", "bold");
     const createLine = (d) => {
       svg.selectAll(".ucsbHoverArea").remove();

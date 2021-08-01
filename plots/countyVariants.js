@@ -23,7 +23,7 @@ const closeVariants = () => {
   color: black; letter-spacing: normal; font-family: Helvetica Neue,Helvetica,Arial,sans-serif; line-height: 18px">Source: Santa
           Barbara County Public Health</a></p>
   <p style="margin: 0; letter-spacing: normal; font-family: Helvetica Neue,Helvetica,Arial,sans-serif; line-height: 18px">Santa Barbara County Public Health reports the types of variants from
-      739 sample tests since November.
+      754 sample tests since November.
   </p>
 </div>`);
 

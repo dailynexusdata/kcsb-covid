@@ -25,14 +25,14 @@
   container
     .append("h1")
     .text("Houselessness in I.V. Throughout the Pandemic")
-    .style("font-family", "Helvetica Neue, Helvetica, Arial, sans-serif")
+    .style("font-family", "Helvetica Neue,Helvetica,Arial,sans-serif")
     .style("font-size", "18pt")
     .style("font-weight", "normal")
     .style("margin", 0);
 
   container
     .append("p")
-    .style("font-family", "Helvetica Neue, Helvetica, Arial, sans-serif")
+    .style("font-family", "Helvetica Neue,Helvetica,Arial,sans-serif")
     .text(
       "The Continuum of Care data estimates that over 100 persons have resided in Isla Vista during the pandemic."
     )
@@ -51,7 +51,7 @@
     .text(
       "Source: County of Santa Barbara Housing and Community Development Division"
     )
-    .style("font-family", "Helvetica Neue, Helvetica, Arial, sans-serif")
+    .style("font-family", "Helvetica Neue,Helvetica,Arial,sans-serif")
     .style("margin", "5px 0 0 0");
   const makePlot = () => {
     const size = {

@@ -6,6 +6,7 @@ import "leaflet/dist/leaflet.css";
   const data = await d3.json(
     "https://raw.githubusercontent.com/dailynexusdata/kcsb-covid/main/data/ivPlaces.json"
   );
+  console.log(data);
 
   const simpleMap = L.tileLayer(
     "https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png",
@@ -28,7 +29,7 @@ import "leaflet/dist/leaflet.css";
   container
     .append("h1")
     .text("Houselessness in I.V. Throughout the Pandemic")
-    .style("font-family", "Helvetica Neue, Helvetica, Arial, sans-serif")
+    .style("font-family", "Helvetica Neue,Helvetica,Arial,sans-serif")
     .style("font-size", "18pt")
     // .style("font-weight", "normal")
     .style("margin", 0);
@@ -37,7 +38,7 @@ import "leaflet/dist/leaflet.css";
     .append("p")
     .style("letter-spacing", 0)
     .style("line-height", "18px")
-    .style("font-family", "Helvetica Neue, Helvetica, Arial, sans-serif")
+    .style("font-family", "Helvetica Neue,Helvetica,Arial,sans-serif")
     .text(
       "The Continuum of Care data estimates that over 100 persons have resided in Isla Vista during the pandemic."
     )
@@ -58,7 +59,7 @@ import "leaflet/dist/leaflet.css";
     )
     .style("letter-spacing", 0)
     .style("line-height", "18px")
-    .style("font-family", "Helvetica Neue, Helvetica, Arial, sans-serif")
+    .style("font-family", "Helvetica Neue,Helvetica,Arial,sans-serif")
     .style("margin", "5px 0 0 0");
   const makePlot = () => {
     const size = {
@@ -142,26 +143,30 @@ import "leaflet/dist/leaflet.css";
           .style("padding", "0 10px")
           .style("border", "0.5px solid #adadad88")
           .style("border-radius", "10px")
-          .style("max-width", "175px");
+          .style("max-width", "175px")
+          .style("letter-spacing", "normal")
+          .style("font-family", "Helvetica Neue,Helvetica,Arial,sans-serif");
 
         tooltip
           .append("h3")
           .text(d[1].name)
           .style("margin", "0 5px 0 0")
           .style("letter-spacing", "normal")
-          .style("font-family", "Helvetica Neue, Helvetica, Arial, sans-serif");
+          .style("font-family", "Helvetica Neue,Helvetica,Arial,sans-serif");
         tooltip
           .append("hr")
           .style("margin", 0)
           .style("border", "1px solid #adadad88");
         tooltip
           .append("p")
-          .html(d[1].text)
+          .text(d[1].text)
           .style("margin", 0)
           .style("letter-spacing", "normal")
-          .style("font-family", "Helvetica Neue, Helvetica, Arial, sans-serif");
+          .style("font-family", "Helvetica Neue,Helvetica,Arial,sans-serif");
+
+        event.preventDefault();
       })
-      .on("mouseleave touchend", () => {
+      .on("mouseleave touchend", (event) => {
         d3.selectAll("text[class^='houselessPlaceArea']").attr(
           "fill-opacity",
           1
@@ -171,6 +176,8 @@ import "leaflet/dist/leaflet.css";
           0.7
         );
         d3.selectAll(".tooltipHouselessness").remove();
+
+        event.preventDefault();
       });
 
     placesOutline
