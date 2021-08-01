@@ -22,14 +22,18 @@
       "Survey from 9,715 undergraduate and 2,593 graduate students from 9/10 UC Campuses."
     )
     .style("font-family", "Helvetica Neue, Helvetica, Arial, sans-serif")
-    .style("margin", "5px 0 0 0");
+    .style("letter-spacing", "normal")
+    .style("margin", "5px 0 0 0")
+    .style("line-height", "18px");
   container
     .append("p")
     .text(
       "Source: University of California Graduate, Undergraduate and Equity Affairs"
     )
     .style("font-family", "Helvetica Neue, Helvetica, Arial, sans-serif")
-    .style("margin", "5px 0 0 0");
+    .style("letter-spacing", "normal")
+    .style("margin", "5px 0 0 0")
+    .style("line-height", "18px");
   const data = [
     {
       caption: "factors affecting academic performance",

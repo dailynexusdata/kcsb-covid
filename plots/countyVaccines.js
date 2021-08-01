@@ -13,17 +13,16 @@ const closeVaccines = () => {
     .select("#kcsb-covid-vaccines-d3")
     .style("max-width", "600px")
     .style("margin", "0 10px")
-    .style("font-family", "Helvetica Neue, Helvetica, Arial, sans-serif")
-    .html(`     <div>
-  <h1 style="margin: 0;font-weight: normal;
-  font-size: 18pt;">Santa Barbara County COVID-19 Vaccinations Through June 2021</h1>
+    .style("font-family", "Helvetica Neue,Helvetica,Arial,sans-serif")
+    .html(`     <div style="letter-spacing: normal; font-family: Helvetica Neue,Helvetica,Arial,sans-serif;">
+  <h1 style="margin: 0; letter-spacing: normal; font-family: Helvetica Neue, Helvetica, Arial, sans-serif; font-size: 18pt;">Santa Barbara County COVID-19 Vaccinations Through July 2021</h1>
 </div>
 <div id="vaccineLegend"></div>
 <svg id="vaccinePlot" style="align-self: center"></svg>
 <div class="footer">
   <!-- <p>Chart: Alex Rudolph / Daily Nexus </p> -->
-  <p style="margin: 0"><a href="https://data.chhs.ca.gov/dataset" style="text-decoration: none;
-  color: black;">Source: California Health and Human Services
+  <p style="margin: 0; letter-spacing: normal; font-family: Helvetica Neue,Helvetica,Arial,sans-serif"><a href="https://data.chhs.ca.gov/dataset" style="text-decoration: none;
+  color: black; letter-spacing: normal; font-family: Helvetica Neue,Helvetica,Arial,sans-serif;">Source: California Health and Human Services
           Agency</a></p>
 </div>`);
 
@@ -349,7 +348,9 @@ const closeVaccines = () => {
       if (window.innerWidth > 400) {
         hoverArea
           .append("text")
-          .text("Fully Vaccinated: " + Math.round(d.fullPct * 1000) / 10 + "%")
+          .text(
+            "Fully Vaccinated: " + Math.round(d.fullPct * 10000) / 100 + "%"
+          )
           .attr("x", x(d.date) + (x(d.date) > size.width / 2 ? -5 : 5))
           .attr("y", y(d.fullPct))
           .attr("text-anchor", x(d.date) > size.width / 2 ? "end" : "start")
@@ -358,7 +359,7 @@ const closeVaccines = () => {
           .append("text")
           .text(
             "Partially Vaccinated: " +
-              Math.round((d.singlePct - d.fullPct) * 1000) / 10 +
+              Math.round((d.singlePct - d.fullPct) * 10000) / 100 +
               "%"
           )
           .attr("x", x(d.date) + (x(d.date) > size.width / 2 ? -5 : 5))
@@ -438,12 +439,14 @@ const closeVaccines = () => {
 
     legend
       .append("p")
+      .html(
+        `County percentage of<span class='squares'></span>and<span class='squares'></span>residents including adults and children.`
+      )
       .style("display", "black")
       .style("line-height", "18pt")
       .style("margin", "0px")
-      .html(
-        `County percentage of<span class='squares'></span>and<span class='squares'></span>residents including adults and children.`
-      );
+      .style("letter-spacing", "normal !important")
+      .style("font-family", "Helvetica Neue,Helvetica,Arial,sans-serif");
 
     legend
       .selectAll(".squares")

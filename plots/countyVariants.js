@@ -10,19 +10,19 @@ const closeVariants = () => {
     .select("#kcsb-covid-variants-d3")
     .style("max-width", "600px")
     .style("margin", "0 10px")
-    .style("font-family", "Helvetica Neue, Helvetica, Arial, sans-serif")
+    .style("font-family", "Helvetica Neue,Helvetica,Arial,sans-serif")
     .html(`<div>
-  <h1 style="margin: 0;font-weight: normal;
-  font-size: 18pt;">Santa Barbara County COVID-19 Variants Through June 2021</h1>
+  <h1 style="margin: 0; letter-spacing: normal;
+  font-size: 18pt;">Santa Barbara County COVID-19 Variants Through July 2021</h1>
 </div>
 <div id="variantLegend"></div>
 <div id="variantPlot"></div>
 <div class="footer">
   <!-- <p>Chart: Alex Rudolph / Daily Nexus </p> -->
   <p style="margin: 0"><a href="https://experience.arcgis.com/experience/030e625c69a04378b2756de161f82ef6" style="text-decoration: none;
-  color: black;">Source: Santa
+  color: black; letter-spacing: normal; font-family: Helvetica Neue,Helvetica,Arial,sans-serif; line-height: 18px">Source: Santa
           Barbara County Public Health</a></p>
-  <p style="margin: 0 ">Santa Barbara County Public Health reports the types of variants from
+  <p style="margin: 0; letter-spacing: normal; font-family: Helvetica Neue,Helvetica,Arial,sans-serif; line-height: 18px">Santa Barbara County Public Health reports the types of variants from
       739 sample tests since November.
   </p>
 </div>`);
@@ -320,7 +320,7 @@ const closeVariants = () => {
       .attr("class", "variantLegends")
       .html(
         (d) =>
-          `<div style="display: flex; text-transform: capitalize;">
+          `<div style="display: flex; text-transform: capitalize; letter-spacing: normal;">
           <div style="width: 20px; height: 20px; margin-right: 3px;background-color: ${color(
             d
           )}"></div>

@@ -12,7 +12,6 @@
     .style("word-wrap", "break-word")
     .style("font-family", "Helvetica Neue, Helvetica, Arial, sans-serif")
     .style("font-size", "18pt")
-    .style("font-weight", "normal")
     .style("margin", 0);
 
   const plotArea = container
@@ -23,6 +22,7 @@
   container
     .append("p")
     .text("Source: UCSB Office of Public Affairs and Communications")
+    .style("letter-spacing", "normal")
     .style("font-family", "Helvetica Neue, Helvetica, Arial, sans-serif")
     .style("margin", "5px 0 0 0");
   const data = {

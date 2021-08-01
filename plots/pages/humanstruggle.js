@@ -131,8 +131,6 @@ import "leaflet/dist/leaflet.css";
         d3.select("text.houselessPlaceArea" + d[0]).attr("fill-opacity", 1);
         d3.select("path.houselessPlaceArea" + d[0]).attr("fill-opacity", 0.7);
 
-        console.log(mouseX, mouseY);
-
         const tooltip = mapContainer
           .append("div")
           .attr("class", "tooltipHouselessness")

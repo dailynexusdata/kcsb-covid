@@ -10,9 +10,9 @@ const closeUCSB = () => {
     .style("max-width", "600px")
     .style("font-family", "Helvetica Neue, Helvetica, Arial, sans-serif")
     .style("margin", "0 10px").html(`<div>
-    <h1 style="margin: 0;font-weight: normal;
+    <h1 style="margin: 0;
     font-size: 18pt;">UCSB Student On-Campus Testing Through June 2021</h1>
-  <p style="margin: 0">Daily COVID-19 testing of undergraduate and graduate students since Fall Quarter 2020.
+  <p style="margin: 0; letter-spacing: normal; font-family: Helvetica Neue,Helvetica,Arial,sans-serif;  line-height: 18px">Daily COVID-19 testing of undergraduate and graduate students since Fall Quarter 2020.
   </p>
 </div>
 <div id="ucsbLegend"></div>
@@ -20,7 +20,7 @@ const closeUCSB = () => {
 <div class="footer">
   <!-- <p>Chart: Alex Rudolph & Emerson Domingo / Daily Nexus </p> -->
   <p style="margin: 0"><a href="https://www.ucsb.edu/COVID-19-information/dashboard" style="text-decoration: none;
-  color: black;">Source: UCSB COVID-19 Information
+  color: black; letter-spacing: normal; font-family: Helvetica Neue,Helvetica,Arial,sans-serif;">Source: UCSB COVID-19 Information
           Dashboard</a></p>
 </div>`);
 
