@@ -11,7 +11,7 @@ const closeUCSB = () => {
     .style("font-family", "Helvetica Neue, Helvetica, Arial, sans-serif")
     .style("margin", "0 10px").html(`<div>
     <h1 style="margin: 0;
-    font-size: 18pt;">UCSB Student On-Campus Testing Through JuLy 2021</h1>
+    font-size: 18pt;">UCSB Student On-Campus Testing Through July 2021</h1>
   <p style="margin: 0; letter-spacing: normal; font-family: Helvetica Neue,Helvetica,Arial,sans-serif;  line-height: 18px">Daily COVID-19 testing of undergraduate and graduate students since Fall Quarter 2020.
   </p>
 </div>
@@ -32,8 +32,8 @@ const closeUCSB = () => {
 
   const data = (
     await d3.csv(
-      "data/ucsbData.csv"
-      // "https://raw.githubusercontent.com/dailynexusdata/kcsb-covid/main/data/ucsbData.csv"
+      // "data/ucsbData.csv"
+      "https://raw.githubusercontent.com/dailynexusdata/kcsb-covid/main/data/ucsbData.csv"
     )
   ).map(({ date, count_average }) => {
     return {

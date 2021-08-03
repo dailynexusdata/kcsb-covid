@@ -124,7 +124,7 @@ import "leaflet/dist/leaflet.css";
       .data(Object.entries(data))
       .join("g")
       .attr("fill", (_, i) => colors(i))
-      .on("mouseenter mousemove touchmove", (event, d) => {
+      .on("mouseenter mousemove touchmove touchstart", (event, d) => {
         const [mouseX, mouseY] = d3.pointer(event);
 
         d3.selectAll(".tooltipHouselessness").remove();
@@ -164,7 +164,7 @@ import "leaflet/dist/leaflet.css";
           .style("letter-spacing", "normal")
           .style("font-family", "Helvetica Neue,Helvetica,Arial,sans-serif");
 
-        event.preventDefault();
+        // event.preventDefault();
       })
       .on("mouseleave touchend", (event) => {
         d3.selectAll("text[class^='houselessPlaceArea']").attr(
@@ -177,7 +177,7 @@ import "leaflet/dist/leaflet.css";
         );
         d3.selectAll(".tooltipHouselessness").remove();
 
-        event.preventDefault();
+        // event.preventDefault();
       });
 
     placesOutline

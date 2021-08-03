@@ -54,7 +54,7 @@ const closeVaccines = () => {
 
   const makePlot = () => {
     const size = {
-      width: Math.min(600, window.innerWidth) - 40,
+      width: Math.min(600, window.innerWidth - 40),
       height: 400,
     };
 
@@ -73,7 +73,7 @@ const closeVaccines = () => {
 
     const x = d3
       .scaleTime()
-      .domain([data[0].date, data[data.length - 1].date])
+      .domain(d3.extent(data, (d) => d.date))
       .range([margin.left, size.width - margin.right]);
 
     const yAxisLine = svg

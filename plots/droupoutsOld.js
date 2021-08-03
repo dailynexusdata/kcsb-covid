@@ -103,6 +103,7 @@
       .attr("x", margin.left)
       .attr("y", 0)
       .style("font-weight", "lighter")
+      .style("letter-spacing", "normal")
       .style("font-size", "12pt")
       .style("font-family", "Helvetica Neue, Helvetica, Arial, sans-serif");
 
@@ -122,6 +123,7 @@
 
     years
       .append("text")
+      .style("letter-spacing", "normal")
       .style("font-family", "Helvetica Neue, Helvetica, Arial, sans-serif")
       .attr("y", (d) => z(d.year))
       .attr("x", margin.left)
@@ -189,6 +191,7 @@
     } else if (title === "Undergraduate") {
       svg
         .append("text")
+        .style("letter-spacing", "normal")
         .text("First Quarter")
         .attr("x", x(0.07))
         .attr("y", size.height / 4 - 20)
@@ -199,6 +202,7 @@
         .style("fill", colors.Undergraduate);
       svg
         .append("text")
+        .style("letter-spacing", "normal")
         .text("Online")
         .attr("x", x(0.07))
         .attr("y", size.height / 4 - 5)
